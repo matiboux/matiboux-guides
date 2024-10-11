@@ -35,6 +35,17 @@ export default defineConfig({
 					label: 'Home',
 					link: '/',
 				},
+				{
+					label: 'System',
+					collapsed: false,
+					items: [
+						{
+							label: 'WSL',
+							collapsed: true,
+							autogenerate: { directory: 'system/wsl', collapsed: true },
+						},
+					],
+				},
 			],
 			customCss: [
 				'./src/tailwind.css',
