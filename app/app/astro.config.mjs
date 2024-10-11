@@ -37,6 +37,10 @@ export default defineConfig({
 						target: '_blank',
 					},
 				},
+				{
+					label: 'Home',
+					link: '/',
+				},
 			],
 		}),
 		tailwind({
