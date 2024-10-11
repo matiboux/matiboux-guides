@@ -15,6 +15,29 @@ export default defineConfig({
 			customCss: [
 				'./src/tailwind.css',
 			],
+			sidebar: [
+				{
+					label: '👤 Matiboux.me',
+					link: 'https://matiboux.me',
+					attrs: {
+						target: '_blank',
+					},
+				},
+				{
+					label: '💻 Github @matiboux',
+					link: 'https://github.com/matiboux',
+					attrs: {
+						target: '_blank',
+					},
+				},
+				{
+					label: '📂 Matiboux Docs',
+					link: 'https://docs.matiboux.com',
+					attrs: {
+						target: '_blank',
+					},
+				},
+			],
 		}),
 		tailwind({
 			applyBaseStyles: false, // Disable default base styles
