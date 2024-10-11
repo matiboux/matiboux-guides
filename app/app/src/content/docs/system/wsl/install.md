@@ -18,12 +18,7 @@ You may list available distros using the command: `wsl --list --online` or `wsl 
 
 Install a distro using the command: `wsl --install {distro}`.
 
-Notably, you can install:
-- Ubuntu
-- Debian
-- Kali Linux
-- Oracle Linux
-- OpenSUSE
+Notably, you can install Ubuntu, Debian, Kali Linux, Oracle Linux, or OpenSUSE.
 
 ### Install Ubuntu
 
@@ -52,8 +47,12 @@ Let's suppose you have a distro named `Ubuntu` installed on the default `C:` dri
 Then, configure & start the distro:
 - Optionally, set the distro as default: `wsl --set-default Ubuntu`
 - Start the distro: `wsl -d Ubuntu`
-- Check your user: `whoami`. If the user is `root` or otherwise not yours, see in [Troubleshooting](#default-user-is-not-yours).
+- Check your user: `whoami`.
 - Check your data.
+
+:::note[Troubleshooting]
+- If the default user is `root` or not yours, see [fix steps below](#default-user-is-not-yours).
+:::
 
 <!-- https://learn.microsoft.com/fr-fr/windows/wsl/use-custom-distro -->
 
@@ -67,9 +66,14 @@ Let's suppose you have a virtual disk file (`ext4.vhdx` file) of a previous WSL 
 
 Then, configure & start the distro:
 - Optionally, set the distro as default: `wsl --set-default Ubuntu`
-- Start the distro: `wsl -d Ubuntu`. If you fail to start the distro for file permission issues to the virtual disk file, see in [Troubleshooting](#import-distro-from-past-installation).
-- Check your user: `whoami`. If the user is `root` or otherwise not yours, see in [Troubleshooting](#default-user-is-not-yours).
+- Start the distro: `wsl -d Ubuntu`.
+- Check your user: `whoami`.
 - Check your data.
+
+:::note[Troubleshooting]
+- If starting the distro fails for permission issues, see [fix steps below](#import-distro-from-past-installation).
+- If the default user is `root` or not yours, see [fix steps below](#default-user-is-not-yours).
+:::
 
 
 ## Troubleshooting
