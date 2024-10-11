@@ -30,7 +30,12 @@ Then, configure & start the distro:
 - Optionally, set the distro as default: `wsl --set-default Ubuntu`
 - Start the distro: `wsl -d Ubuntu`
 - On first launch, set up your username and password
-- To go further, read: [Configure your WSL distro](<Configure>)
+
+Once the distro is running, you can:
+- Update packages: `sudo apt update && sudo apt upgrade`,
+- Customize your shell to your liking,
+- Access your Windows files in the distro at `/mnt/c/` (mount for the `C:` drive),
+- Further configure WSL by editing `/etc/wsl.conf`.
 
 
 ## Move distro to another drive
