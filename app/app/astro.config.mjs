@@ -9,15 +9,44 @@ export default defineConfig({
 		svelte(),
 		starlight({
 			title: 'Matiboux Guides',
-			components: {
-				SiteTitle: '~/components/overrides/SiteTitle.astro',
-			},
+			sidebar: [
+				{
+					label: '👤 Matiboux.me',
+					link: 'https://matiboux.me',
+					attrs: {
+						target: '_blank',
+					},
+				},
+				{
+					label: '💻 Github @matiboux',
+					link: 'https://github.com/matiboux',
+					attrs: {
+						target: '_blank',
+					},
+				},
+				{
+					label: '📂 Matiboux Docs',
+					link: 'https://docs.matiboux.com',
+					attrs: {
+						target: '_blank',
+					},
+				},
+				{
+					label: 'Home',
+					link: '/',
+				},
+			],
 			customCss: [
 				'./src/tailwind.css',
 			],
+			pagination: false,
+			components: {
+				SiteTitle: '~/components/overrides/SiteTitle.astro',
+			},
 		}),
 		tailwind({
 			applyBaseStyles: false, // Disable default base styles
 		}),
 	],
+	trailingSlash: 'never',
 })

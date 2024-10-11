@@ -3,8 +3,7 @@
 x-common:
 
   app:
-    environment:
-      &app_environment
+    environment: &app_environment
       GITHUB_REPOSITORY_URL: ${GITHUB_REPOSITORY_URL:-}
       GITHUB_SHA: ${GITHUB_SHA:-}
 
