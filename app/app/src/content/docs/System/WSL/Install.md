@@ -78,7 +78,7 @@ Then, configure & start the distro:
 
 If the default user (which opens on WSL start) is `root` or otherwise not yours, you may want to change it. To do so, override the default user configuration in `/etc/wsl.conf`:
 
-```
+```properties
 [user]
 default={username}
 ```
