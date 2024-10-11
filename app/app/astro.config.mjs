@@ -9,12 +9,6 @@ export default defineConfig({
 		svelte(),
 		starlight({
 			title: 'Matiboux Guides',
-			components: {
-				SiteTitle: '~/components/overrides/SiteTitle.astro',
-			},
-			customCss: [
-				'./src/tailwind.css',
-			],
 			sidebar: [
 				{
 					label: '👤 Matiboux.me',
@@ -42,7 +36,13 @@ export default defineConfig({
 					link: '/',
 				},
 			],
+			customCss: [
+				'./src/tailwind.css',
+			],
 			pagination: false,
+			components: {
+				SiteTitle: '~/components/overrides/SiteTitle.astro',
+			},
 		}),
 		tailwind({
 			applyBaseStyles: false, // Disable default base styles
