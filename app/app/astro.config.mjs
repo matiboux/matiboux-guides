@@ -42,6 +42,7 @@ export default defineConfig({
 					link: '/',
 				},
 			],
+			pagination: false,
 		}),
 		tailwind({
 			applyBaseStyles: false, // Disable default base styles
