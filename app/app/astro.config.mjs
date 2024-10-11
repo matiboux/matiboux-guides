@@ -20,4 +20,5 @@ export default defineConfig({
 			applyBaseStyles: false, // Disable default base styles
 		}),
 	],
+	trailingSlash: 'never',
 })
