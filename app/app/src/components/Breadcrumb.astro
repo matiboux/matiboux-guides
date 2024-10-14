@@ -85,6 +85,20 @@ if (parts.length > 1 && title)
 						margin: 0 0.5em;
 					}
 				}
+
+				span {
+					opacity: 0.8;
+				}
+
+				&:last-child {
+					color: var(--sl-color-text-accent);
+				}
+
+				&:first-child, &:last-child {
+					span {
+						opacity: 1;
+					}
+				}
 			}
 		}
 
@@ -95,5 +109,6 @@ if (parts.length > 1 && title)
 
 	.sl-breadcrumb :global(a) {
 		color: var(--sl-color-text);
+		text-decoration: none;
 	}
 </style>
