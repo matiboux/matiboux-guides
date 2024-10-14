@@ -9,6 +9,9 @@ export default defineConfig({
 		svelte(),
 		starlight({
 			title: 'Matiboux Guides',
+			editLink: {
+				baseUrl: 'https://github.com/matiboux/matiboux-guides/edit/main/',
+			},
 			sidebar: [
 				{
 					label: '👤 Matiboux.me',
