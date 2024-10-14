@@ -9,6 +9,9 @@ export default defineConfig({
 		svelte(),
 		starlight({
 			title: 'Matiboux Guides',
+			editLink: {
+				baseUrl: 'https://github.com/matiboux/matiboux-guides/edit/main/',
+			},
 			sidebar: [
 				{
 					label: '👤 Matiboux.me',
@@ -56,11 +59,15 @@ export default defineConfig({
 					],
 				},
 			],
+			social: {
+				github: 'https://github.com/matiboux/matiboux-guides',
+			},
 			customCss: [
 				'./src/tailwind.css',
 			],
 			pagination: false,
 			components: {
+				SocialIcons: '~/components/overrides/SocialIcons.astro',
 				SiteTitle: '~/components/overrides/SiteTitle.astro',
 				Banner: '~/components/overrides/Banner.astro',
 			},

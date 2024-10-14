@@ -1,0 +1,17 @@
+---
+import StarlightSocialIcons from '@astrojs/starlight/components/SocialIcons.astro'
+---
+
+<div class="social-icons-wrapper">
+	<StarlightSocialIcons {...(Astro.props as any)} />
+</div>
+
+<style lang="scss">
+	.social-icons-wrapper {
+		display: contents;
+
+		:global(a) {
+			color: var(--sl-color-text);
+		}
+	}
+</style>
