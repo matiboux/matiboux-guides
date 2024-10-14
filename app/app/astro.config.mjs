@@ -36,6 +36,15 @@ export default defineConfig({
 					link: '/',
 				},
 				{
+					label: 'Dev',
+					collapsed: false,
+					items: [
+						{
+							slug: 'dev/tools',
+						},
+					],
+				},
+				{
 					label: 'System',
 					collapsed: false,
 					items: [
