@@ -10,7 +10,7 @@ export default defineConfig({
 		starlight({
 			title: 'Matiboux Guides',
 			editLink: {
-				baseUrl: 'https://github.com/matiboux/matiboux-guides/edit/main/',
+				baseUrl: 'https://github.com/matiboux/matiboux-guides/edit/main/app/app/',
 			},
 			sidebar: [
 				{
