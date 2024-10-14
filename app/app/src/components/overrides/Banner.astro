@@ -1,0 +1,13 @@
+---
+import StarlightBanner from '@astrojs/starlight/components/Banner.astro'
+---
+
+<div class="banner-wrapper">
+	<StarlightBanner {...(Astro.props as any)} />
+</div>
+
+<style lang="scss">
+	.banner-wrapper {
+		display: contents;
+	}
+</style>
