@@ -1,8 +1,11 @@
 ---
 import StarlightBanner from '@astrojs/starlight/components/Banner.astro'
+
+import Breadcrumb from '~/components/Breadcrumb.astro'
 ---
 
 <div class="banner-wrapper">
+	<Breadcrumb {...Astro.props} />
 	<StarlightBanner {...(Astro.props as any)} />
 </div>
 
