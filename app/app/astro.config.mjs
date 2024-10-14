@@ -67,6 +67,7 @@ export default defineConfig({
 			],
 			pagination: false,
 			components: {
+				SocialIcons: '~/components/overrides/SocialIcons.astro',
 				SiteTitle: '~/components/overrides/SiteTitle.astro',
 				Banner: '~/components/overrides/Banner.astro',
 			},
