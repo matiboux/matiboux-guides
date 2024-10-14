@@ -56,6 +56,9 @@ export default defineConfig({
 					],
 				},
 			],
+			social: {
+				github: 'https://github.com/matiboux/matiboux-guides',
+			},
 			customCss: [
 				'./src/tailwind.css',
 			],
