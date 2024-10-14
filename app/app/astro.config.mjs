@@ -53,6 +53,7 @@ export default defineConfig({
 			pagination: false,
 			components: {
 				SiteTitle: '~/components/overrides/SiteTitle.astro',
+				Banner: '~/components/overrides/Banner.astro',
 			},
 		}),
 		tailwind({

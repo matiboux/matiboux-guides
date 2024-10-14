@@ -1,0 +1,114 @@
+---
+import { getEntry } from 'astro:content'
+
+import { slugLabels } from '~/config/slugLabels'
+
+const collection = Astro.props.entry.collection
+const id = Astro.props.entry.id
+const slug = Astro.props.entry.slug
+console.log('Breadcrumb', { collection, id, slug })
+
+const parts = slug
+	? await slug.split('/').reduce(
+		async (accPromise, part) => {
+			const acc = await accPromise
+			const partSlug = acc.length >= 1 ? `${acc[acc.length - 1].slug}/${part}` : part
+			const partEntry = await getEntry(collection, partSlug)
+			const partLabel = partEntry ? partEntry.data.title : (slugLabels[partSlug] ?? part)
+			const partLink = partEntry ? `/${partEntry.slug}` : null
+			return [
+				...acc,
+				{
+					slug: partSlug,
+					label: partLabel,
+					link: partLink,
+				},
+			]
+		},
+		Promise.resolve([]),
+	)
+	: []
+
+const title = Astro.props.entry.data.title
+if (parts.length > 1 && title)
+{
+	parts[parts.length - 1].label = title
+	parts[parts.length - 1].link = null
+}
+---
+
+{parts.length > 1 &&
+	<div class="sl-breadcrumb">
+		<ul>
+			<li>
+				<a href="/">
+					<span class="icon icon-[mdi--home]"></span>
+				</a>
+			</li>
+			{parts.map((part) => (
+				<li>
+					{part.link
+						? <a href={part.link}>{part.label}</a>
+						: <span>{part.label}</span>
+					}
+				</li>
+			))}
+		</ul>
+	</div>
+}
+
+<style>
+	.sl-breadcrumb {
+		background-color: var(--sl-color-bg-nav);
+		line-height: var(--sl-line-height-headings);
+		padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
+		color: var(--sl-color-text);
+		text-wrap: balance;
+		border-bottom: 1px solid var(--sl-color-hairline);
+
+		ul {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			padding: 0;
+			margin: 0;
+			list-style: none;
+
+			li {
+				display: inline;
+				margin: 0;
+				padding: 0;
+
+				&:not(:last-child) {
+					&::after {
+						content: '/';
+						margin: 0 0.5em;
+					}
+				}
+
+				span {
+					opacity: 0.8;
+				}
+
+				&:last-child {
+					color: var(--sl-color-text-accent);
+				}
+
+				&:first-child, &:last-child {
+					span {
+						opacity: 1;
+					}
+				}
+			}
+		}
+
+		.icon {
+			vertical-align: -0.125em;
+		}
+	}
+
+	.sl-breadcrumb :global(a) {
+		color: var(--sl-color-text);
+		text-decoration: none;
+	}
+</style>
