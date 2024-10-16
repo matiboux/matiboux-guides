@@ -4,12 +4,8 @@ import { getEntry } from 'astro:content'
 import { slugLabels } from '~/config/slugLabels'
 
 const collection = Astro.props.entry.collection
-const id = Astro.props.entry.id
-const slug = Astro.props.entry.slug
-console.log('Breadcrumb', { collection, id, slug })
-
-const parts = slug
-	? await slug.split('/').reduce(
+const parts = Astro.props.entry.slug
+	? await Astro.props.entry.slug.split('/').reduce(
 		async (accPromise, part) => {
 			const acc = await accPromise
 			const partSlug = acc.length >= 1 ? `${acc[acc.length - 1].slug}/${part}` : part
