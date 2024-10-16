@@ -4,5 +4,6 @@ export const slugLabels = {
 
 	// System
 	'system': 'System',
+	'system/windows': 'Windows',
 	'system/wsl': 'WSL',
 }

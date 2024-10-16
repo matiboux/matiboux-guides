@@ -52,6 +52,11 @@ export default defineConfig({
 					collapsed: false,
 					items: [
 						{
+							label: 'Windows',
+							collapsed: true,
+							autogenerate: { directory: 'system/windows', collapsed: true },
+						},
+						{
 							label: 'WSL',
 							collapsed: true,
 							autogenerate: { directory: 'system/wsl', collapsed: true },
