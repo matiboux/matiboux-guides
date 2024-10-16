@@ -1,0 +1,13 @@
+---
+import StarlightSidebar from '@astrojs/starlight/components/Sidebar.astro'
+---
+
+<div class="sidebar-wrapper">
+	<StarlightSidebar {...(Astro.props as any)} />
+</div>
+
+<style lang="scss">
+	.sidebar-wrapper {
+		display: contents;
+	}
+</style>
