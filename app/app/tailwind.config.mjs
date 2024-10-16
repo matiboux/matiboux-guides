@@ -15,6 +15,10 @@ export default {
 		extend: {
 			colors: { accent, gray },
 		},
+		screens: {
+			md: '50rem',
+			lg: '72rem',
+		},
 	},
 	plugins: [
 		starlightPlugin(),
