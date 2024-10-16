@@ -1,9 +1,15 @@
 ---
 import StarlightSidebar from '@astrojs/starlight/components/Sidebar.astro'
+
+import Copyright from '~/components/Copyright.astro'
 ---
 
 <div class="sidebar-wrapper">
 	<StarlightSidebar {...(Astro.props as any)} />
+
+	<div class="md:mt-4">
+		<Copyright />
+	</div>
 </div>
 
 <style lang="scss">
