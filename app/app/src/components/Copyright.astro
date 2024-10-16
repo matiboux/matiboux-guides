@@ -1,4 +1,5 @@
 ---
+const { shortText } = Astro.props
 ---
 
 <div class="copyright-notice">
@@ -19,7 +20,15 @@
 		</li>
 		<li>
 			<span class="icon icon-[mdi--contract-outline]" />
-			Content available under
+			{shortText
+				? <>
+					<span class="md:hidden">Content licensed under</span>
+					<span class="hidden md:inline">Licensed under</span>
+				</>
+				: <>
+					Content licensed under
+				</>
+			}
 			<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">
 				<img
 					src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-sa.svg"
