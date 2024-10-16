@@ -65,6 +65,7 @@ export default defineConfig({
 			customCss: [
 				'./src/tailwind.css',
 			],
+			lastUpdated: true,
 			pagination: false,
 			components: {
 				SocialIcons: '~/components/overrides/SocialIcons.astro',
