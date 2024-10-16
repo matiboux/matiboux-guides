@@ -53,7 +53,7 @@ jobs:
           git remote add app ./app/app/.git &&
           git push app app-history:main &&
           git branch -D app-history &&
-          git remote remove app &&
+          git remote remove app
         )
 
     - name: Build for production
