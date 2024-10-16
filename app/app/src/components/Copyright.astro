@@ -1,22 +1,37 @@
 ---
-import StarlightFooter from '@astrojs/starlight/components/Footer.astro'
-
-import Copyright from '~/components/Copyright.astro'
 ---
 
-<div class="footer-wrapper">
-	<StarlightFooter {...(Astro.props as any)} />
-
-	<div class="md:sl-hidden">
-		<Copyright />
-	</div>
+<div class="copyright-notice">
+	<ul>
+		<li>
+			<span class="icon icon-[mdi--copyright]" />
+			2024
+			<a href="https://matiboux.me" target="_blank">
+				Matiboux
+			</a>
+		</li>
+		<li>
+			<span class="icon icon-[mdi--star-outline]" />
+			Built with
+			<a href="https://starlight.astro.build/" target="_blank">
+				Starlight
+			</a>
+		</li>
+		<li>
+			<span class="icon icon-[mdi--contract-outline]" />
+			Content available under
+			<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">
+				<img
+					src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-sa.svg"
+					alt="CC BY-NC-SA 4.0 License"
+					class="license-icon"
+				/>
+			</a>
+		</li>
+	</ul>
 </div>
 
 <style lang="scss">
-	.footer-wrapper {
-		display: contents;
-	}
-
 	.copyright-notice {
 		font-size: var(--sl-text-sm);
 		color: var(--sl-color-gray-4);
