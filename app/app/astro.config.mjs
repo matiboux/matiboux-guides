@@ -77,6 +77,7 @@ export default defineConfig({
 				SocialIcons: '~/components/overrides/SocialIcons.astro',
 				Sidebar: '~/components/overrides/Sidebar.astro',
 				Banner: '~/components/overrides/Banner.astro',
+				Footer: '~/components/overrides/Footer.astro',
 			},
 		}),
 		tailwind({

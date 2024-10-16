@@ -1,0 +1,13 @@
+---
+import StarlightFooter from '@astrojs/starlight/components/Footer.astro'
+---
+
+<div class="footer-wrapper">
+	<StarlightFooter {...(Astro.props as any)} />
+</div>
+
+<style lang="scss">
+	.footer-wrapper {
+		display: contents;
+	}
+</style>
