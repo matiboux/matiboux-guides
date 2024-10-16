@@ -32,6 +32,25 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Copy Git history in app source folder
+      run: |
+        # Initialize Git repository in app folder
+        (
+          cd app/app &&
+          rm -rf .git &&
+          git init -b main &&
+          git config receive.denyCurrentBranch ignore
+        )
+        # Split Git history of app folder
+        git subtree split --prefix=app/app -b app-history
+        # Push Git history to app folder repository
+        (
+          git remote add app ./app/app/.git &&
+          git push app app-history:main &&
+          git branch -D app-history &&
+          git remote remove app &&
+        )
+
     - name: Build for production
       env:
         GITHUB_REPOSITORY_URL: https://github.com/${{ github.repository }}
