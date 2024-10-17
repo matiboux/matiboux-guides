@@ -11,6 +11,27 @@ Run everything with Docker!
 Debugging might be harder to configure as your local machine is isolated from the container, but it saves you a lot of time in the long run.
 
 
+## CLI tools
+
+I've made some CLI tools to speed up your workflow:
+
+- [DockerC](https://github.com/matiboux/dockerc/): Wrapper for docker compose commands.  
+  It makes it easier to run docker commands in the context of a project. It also provides shorthands to common commands.
+
+I also use these tools:
+
+- [jq](https://jqlang.github.io/jq/): Command-line JSON processor.  
+  It is a must-have for any developer working with JSON data, Docker, Kubernetes, etc.
+
+
+## IDE tools
+
+I've made some CLI tools to speed up your workflow:
+
+- [Instant Commit](https://marketplace.visualstudio.com/items?itemName=Matiboux.instant-commit) (VS Code): Auto-generate messages based on changes for one-click commits.  
+  It saves you time while keeping commits clean and consistent. It only describes changes made to the file tree, so it is suitable for commits in documentation, configuration, or anywhere where a detailed description is not necessary.
+
+
 ## Online tools
 
 I've made some online tools to help you in everyday dev tasks and speed up your workflow. Check them out!
