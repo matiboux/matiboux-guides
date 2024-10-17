@@ -43,14 +43,14 @@ const { shortText } = Astro.props
 <style lang="scss">
 	.copyright-notice {
 		font-size: var(--sl-text-sm);
-		color: var(--sl-color-gray-4);
+		color: var(--sl-color-gray-3);
 
 		a {
-			color: var(--sl-color-gray-4);
+			color: inherit;
 			text-decoration: underline;
 
 			&:hover {
-				color: var(--sl-color-gray-3);
+				color: var(--sl-color-gray-2);
 				text-decoration: none;
 			}
 		}
@@ -84,11 +84,23 @@ const { shortText } = Astro.props
 			// Horizontal line
 			content: '';
 			display: block;
-			background-color: var(--sl-color-gray-6);
+			background-color: var(--sl-color-gray-5);
 			width: calc(100% - 2rem);
 			height: 1px;
 			margin-bottom: 1rem;
 			margin-left: 1rem;
+		}
+	}
+
+	:global(:root[data-theme='light']) .copyright-notice {
+		color: var(--sl-color-gray-4);
+
+		a:hover {
+			color: var(--sl-color-gray-3);
+		}
+
+		&:before {
+			background-color: var(--sl-color-gray-6);
 		}
 	}
 </style>
