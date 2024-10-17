@@ -11,9 +11,9 @@ Run everything with Docker!
 Debugging might be harder to configure as your local machine is isolated from the container, but it saves you a lot of time in the long run.
 
 
-## Online tools to speed up your workflow
+## Online tools
 
-I've made some online tools to help you in everyday dev tasks. Check them out!
+I've made some online tools to help you in everyday dev tasks and speed up your workflow. Check them out!
 
-- [Env Converter](https://envconverter.matiboux.com): Convert your `.env` files to different formats.
+- [Env Converter](https://envconverter.matiboux.com): Convert your `.env` files between different formats.
 - [EML Reader](https://emlreader.matiboux.com): Read `.eml` files without opening an email client.
