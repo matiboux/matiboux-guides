@@ -43,6 +43,11 @@ export default defineConfig({
 					collapsed: false,
 					items: [
 						{
+							label: 'Docker',
+							collapsed: true,
+							autogenerate: { directory: 'dev/docker', collapsed: true },
+						},
+						{
 							slug: 'dev/tools',
 						},
 					],
