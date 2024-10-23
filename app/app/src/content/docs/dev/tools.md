@@ -32,6 +32,13 @@ I've made some CLI tools to speed up your workflow:
   It saves you time while keeping commits clean and consistent. It only describes changes made to the file tree, so it is suitable for commits in documentation, configuration, or anywhere where a detailed description is not necessary.
 
 
+## Devlopment tools
+
+I've made some development tools to help your development process:
+
+- [CORS Proxy](https://cors-proxy.matiboux.com): Simple CORS proxy server to bypass browser restrictions locally.
+
+
 ## Online tools
 
 I've made some online tools to help you in everyday dev tasks and speed up your workflow. Check them out!
