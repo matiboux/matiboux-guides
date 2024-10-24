@@ -6,6 +6,13 @@ title: Use ChromaDB API
 
 Use the following input fields to auto-fill your configuration in API reference examples.
 
+import AuthToken from '~/components/docs/dev/chromadb/api/AuthToken.svelte'
+
+<AuthToken
+	label="Set your authentication token"
+	client:visible
+/>
+
 import InputCollectionName from '~/components/docs/dev/chromadb/api/InputCollectionName.svelte'
 
 <InputCollectionName
@@ -16,14 +23,14 @@ import InputCollectionName from '~/components/docs/dev/chromadb/api/InputCollect
 import InputCollectionId from '~/components/docs/dev/chromadb/api/InputCollectionId.svelte'
 
 <InputCollectionId
-	label="Set your collection id"
+	label="Set your source collection id (used in read requests)"
 	client:visible
 />
 
-import AuthToken from '~/components/docs/dev/chromadb/api/AuthToken.svelte'
+import InputTargetCollectionId from '~/components/docs/dev/chromadb/api/InputTargetCollectionId.svelte'
 
-<AuthToken
-	label="Set your authentication token"
+<InputTargetCollectionId
+	label="Set your target collection id (used in write requests)"
 	client:visible
 />
 
