@@ -1,6 +1,8 @@
 export const slugLabels = {
 	// Dev
 	'dev': 'Dev',
+	'dev/chromadb': 'ChromaDB',
+	'dev/docker': 'Docker',
 
 	// System
 	'system': 'System',
