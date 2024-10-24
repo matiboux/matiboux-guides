@@ -2,7 +2,7 @@
 title: Use ChromaDB API
 ---
 
-## Configuration
+## Auto-fill input fields
 
 Use the following input fields to auto-fill your configuration in API reference examples.
 
@@ -28,7 +28,7 @@ import AuthToken from '~/components/docs/dev/chromadb/api/AuthToken.svelte'
 />
 
 
-## API Reference
+## Read collection data
 
 ### List all collections
 
@@ -38,13 +38,24 @@ import CollectionsGet from '~/components/docs/dev/chromadb/api/CollectionsGet.sv
 
 <CollectionsGet client:visible />
 
-### Peek item in collection
+### Count items in collection
+
+GET `/api/v1/collections/{COLLECTION_ID}/count` route to count items in a collection.
+
+import CollectionCount from '~/components/docs/dev/chromadb/api/CollectionCount.svelte'
+
+<CollectionCount client:visible />
+
+### Peek first item in collection
 
 POST `/api/v1/collections/{COLLECTION_ID}/get` route to peek at the first item in a collection.
 
 import CollectionPeek from '~/components/docs/dev/chromadb/api/CollectionPeek.svelte'
 
 <CollectionPeek client:visible />
+
+
+## Create or delete collections
 
 ### Create collection
 
@@ -54,6 +65,17 @@ import CollectionCreate from '~/components/docs/dev/chromadb/api/CollectionCreat
 
 <CollectionCreate client:visible />
 
+### Delete collection
+
+DELETE `/api/v1/collections/{COLLECTION_NAME}` route to delete a collection.
+
+import CollectionDelete from '~/components/docs/dev/chromadb/api/CollectionDelete.svelte'
+
+<CollectionDelete client:visible />
+
+
+## Advanced operations
+
 ### Copy collection contents to another collection
 
 - POST `/api/v1/collections/{SOURCE_COLLECTION_ID}/get` to get entire collection contents.
@@ -62,19 +84,3 @@ import CollectionCreate from '~/components/docs/dev/chromadb/api/CollectionCreat
 import CollectionCopy from '~/components/docs/dev/chromadb/api/CollectionCopy.svelte'
 
 <CollectionCopy client:visible />
-
-### Count items in collection
-
-GET `/api/v1/collections/{COLLECTION_ID}/count` route to count items in a collection.
-
-import CollectionCount from '~/components/docs/dev/chromadb/api/CollectionCount.svelte'
-
-<CollectionCount client:visible />
-
-### Delete collection
-
-DELETE `/api/v1/collections/{COLLECTION_NAME}` route to delete a collection.
-
-import CollectionDelete from '~/components/docs/dev/chromadb/api/CollectionDelete.svelte'
-
-<CollectionDelete client:visible />
