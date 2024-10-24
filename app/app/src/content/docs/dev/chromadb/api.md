@@ -1,0 +1,89 @@
+---
+title: Use ChromaDB API
+---
+
+## API Reference
+
+### List all collections
+
+GET `/api/v1/collections` route to list all collections.
+
+```sh
+curl -X GET -v \
+  https://chromadb.example.com/api/v1/collections \
+  -H "Authorization: Bearer {AUTH_TOKEN}"
+```
+
+### Peek item in collection
+
+POST `/api/v1/collections/{COLLECTION_ID}/get` route to peek at the first item in a collection.
+
+```sh
+curl -X POST -v \
+  https://chromadb.example.com/api/v1/collections/{COLLECTION_ID}/get \
+  -H "Authorization: Bearer {AUTH_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "limit": 1
+  }'
+```
+
+### Create collection
+
+POST `/api/v1/collections` route to create a new collection using cosine similarity.
+
+```sh
+curl -X POST -v \
+  https://chromadb.example.com/api/v1/collections \
+  -H "Authorization: Bearer {AUTH_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "{COLLECTION_NAME}",
+    "metadata": {
+      "hnsw:space": "cosine"
+    },
+    "get_or_create": true
+  }'
+```
+
+### Copy collection contents to another collection
+
+- POST `/api/v1/collections/{SOURCE_COLLECTION_ID}/get` to get entire collection contents.
+- POST `/api/v1/collections/{TARGET_COLLECTION_ID}/add` to insert contents into another collection.
+
+```sh
+curl -X POST -v \
+  https://chromadb.example.com/api/v1/collections/{COLLECTION_ID}/get \
+  -H "Authorization: Bearer {AUTH_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "include": [ "embeddings", "documents", "metadatas" ]
+  }' \
+  > collection.json
+
+curl -X POST -v \
+  https://chromadb.example.com/api/v1/collections/{COLLECTION_ID}/add \
+  -H "Authorization: Bearer {AUTH_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d @collection.json
+```
+
+### Count items in collection
+
+GET `/api/v1/collections/{COLLECTION_ID}/count` route to count items in a collection.
+
+```sh
+curl -X GET -v \
+  https://chromadb.example.com/api/v1/collections/{COLLECTION_ID}/count \
+  -H "Authorization: Bearer {AUTH_TOKEN}"
+```
+
+### Delete collection
+
+DELETE `/api/v1/collections/{COLLECTION_NAME}` route to delete a collection.
+
+```sh
+curl -X DELETE -v \
+  https://chromadb.example.com/api/v1/collections/{COLLECTION_NAME} \
+  -H "Authorization: Bearer {AUTH_TOKEN}"
+```
