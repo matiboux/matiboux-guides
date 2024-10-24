@@ -4,7 +4,24 @@ title: Deploy ChromaDB
 
 ## Deploy in Docker
 
-...
+Use the following command to deploy ChromaDB locally in a Docker container:
+
+```bash
+docker run -d --rm -p 8000:8000 chromadb/chroma
+```
+
+ChromaDB will be available at [http://localhost:8000](http://localhost:8000).
+
+On a production server, you may want to set up a volume to persist data and change the default ChromaDB configuration:
+
+```bash
+docker run -d --rm -p 8000:8000 \
+  -v ./chroma:/chroma/chroma \
+  -e IS_PERSISTENT=TRUE \
+  -e ANONYMIZED_TELEMETRY=TRUE \
+  chromadb/chroma
+```
+
 
 
 ## Deploy in Kubernetes
