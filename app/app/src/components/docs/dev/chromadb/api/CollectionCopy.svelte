@@ -1,6 +1,7 @@
 <script lang="ts">
-import { inputCollectionIdStore } from './input-collection-id.store'
 import { authTokenStore } from './auth-token.store'
+import { inputCollectionIdStore } from './input-collection-id.store'
+import { inputTargetCollectionIdStore } from './input-target-collection-id.store'
 
 // Generate random id
 const id = Math.random().toString(36).substring(2)
@@ -17,7 +18,7 @@ curl -X POST -v \
   > collection.json
 
 curl -X POST -v \
-  https://chromadb.example.com/api/v1/collections/{'{'}TARGET_COLLECTION_ID{'}'}/add \
+  https://chromadb.example.com/api/v1/collections/<code>{$inputTargetCollectionIdStore || '{TARGET_COLLECTION_ID}'}</code>/add \
   -H "Authorization: Bearer <code>{$authTokenStore || '{AUTH_TOKEN}'}</code>" \
   -H "Content-Type: application/json" \
   -d @collection.json
