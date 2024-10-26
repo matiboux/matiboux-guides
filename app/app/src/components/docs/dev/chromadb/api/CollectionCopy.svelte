@@ -16,7 +16,7 @@ curl -X POST -v \
   -d '{'{'}
     "include": [ "embeddings", "documents", "metadatas" ]
   {'}'}' \
-  > collection.json
+  {'>'} collection.json
 
 curl -X POST -v \
   <code>{$chromaServerUrlStore || 'https://chromadb.example.com'}</code>/api/v1/collections/<code>{$inputTargetCollectionIdStore || '{TARGET_COLLECTION_ID}'}</code>/add \
