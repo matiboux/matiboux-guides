@@ -1,4 +1,5 @@
 <script lang="ts">
+import { chromaServerUrlStore } from './chroma-server-url.store'
 import { inputCollectionNameStore } from './input-collection-name.store'
 import { authTokenStore } from './auth-token.store'
 
@@ -8,7 +9,7 @@ const id = Math.random().toString(36).substring(2)
 
 <pre data-language="sh">
 curl -X DELETE -v \
-  https://chromadb.example.com/api/v1/collections/<code>{$inputCollectionNameStore || '{COLLECTION_NAME}'}</code> \
+  <code>{$chromaServerUrlStore || 'https://chromadb.example.com'}</code>/api/v1/collections/<code>{$inputCollectionNameStore || '{COLLECTION_NAME}'}</code> \
   -H "Authorization: Bearer <code>{$authTokenStore || '{AUTH_TOKEN}'}</code>"
 </pre>
 

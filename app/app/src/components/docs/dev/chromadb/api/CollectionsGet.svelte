@@ -1,4 +1,5 @@
 <script lang="ts">
+import { chromaServerUrlStore } from './chroma-server-url.store'
 import { authTokenStore } from './auth-token.store'
 
 // Generate random id
@@ -7,7 +8,7 @@ const id = Math.random().toString(36).substring(2)
 
 <pre data-language="sh">
 curl -X GET -v \
-  https://chromadb.example.com/api/v1/collections \
+  <code>{$chromaServerUrlStore || 'https://chromadb.example.com'}</code>/api/v1/collections \
   -H "Authorization: Bearer <code>{$authTokenStore || '{AUTH_TOKEN}'}</code>"
 </pre>
 
