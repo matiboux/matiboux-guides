@@ -3,9 +3,6 @@ import { chromaServerUrlStore } from './chroma-server-url.store'
 import { sanitizeChromaServerUrl } from './sanitize-chroma-server-url'
 import { inputCollectionNameStore } from './input-collection-name.store'
 import { authTokenStore } from './auth-token.store'
-
-// Generate random id
-const id = Math.random().toString(36).substring(2)
 </script>
 
 <pre data-language="sh">

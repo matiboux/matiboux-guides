@@ -4,9 +4,6 @@ import { sanitizeChromaServerUrl } from './sanitize-chroma-server-url'
 import { authTokenStore } from './auth-token.store'
 import { inputCollectionIdStore } from './input-collection-id.store'
 import { inputTargetCollectionIdStore } from './input-target-collection-id.store'
-
-// Generate random id
-const id = Math.random().toString(36).substring(2)
 </script>
 
 <pre data-language="sh">
