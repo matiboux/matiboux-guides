@@ -1,5 +1,6 @@
 <script lang="ts">
 import { chromaServerUrlStore } from './chroma-server-url.store'
+import { sanitizeChromaServerUrl } from './sanitize-chroma-server-url'
 
 // Props
 let label: string | undefined = undefined

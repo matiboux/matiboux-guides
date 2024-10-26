@@ -1,5 +1,6 @@
 <script lang="ts">
 import { chromaServerUrlStore } from './chroma-server-url.store'
+import { sanitizeChromaServerUrl } from './sanitize-chroma-server-url'
 import { inputCollectionIdStore } from './input-collection-id.store'
 import { authTokenStore } from './auth-token.store'
 
@@ -9,7 +10,7 @@ const id = Math.random().toString(36).substring(2)
 
 <pre data-language="sh">
 curl -X GET -v \
-  <code>{$chromaServerUrlStore || 'https://chromadb.example.com'}</code>/api/v1/collections/<code>{$inputCollectionIdStore || '{COLLECTION_ID}'}</code>/count \
+  <code>{sanitizeChromaServerUrl($chromaServerUrlStore) || 'https://chromadb.example.com'}</code>/api/v1/collections/<code>{$inputCollectionIdStore || '{COLLECTION_ID}'}</code>/count \
   -H "Authorization: Bearer <code>{$authTokenStore || '{AUTH_TOKEN}'}</code>"
 </pre>
 
