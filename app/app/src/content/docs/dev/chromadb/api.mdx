@@ -83,7 +83,7 @@ import CollectionCreate from '~/components/docs/dev/chromadb/api/CollectionCreat
 	replaceCollectionName={true}
 	client:visible
 >
-	```sh
+	```sh "{SERVER_URL}" "{AUTH_TOKEN}" "{COLLECTION_NAME}"
 	curl -X POST -v \
 		{SERVER_URL}/api/v1/collections \
 		-H "Authorization: Bearer {AUTH_TOKEN}" \

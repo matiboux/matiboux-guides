@@ -23,51 +23,6 @@ export {
 let wrapper: HTMLDivElement
 let originalWrapperHtml: string | null = null
 
-function replacePlaceholderInHtml(
-	inputHtml: string,
-	placeholder: string,
-	replacement: string,
-): string
-{
-	// Parse input html
-	const inputDocument = (new DOMParser()).parseFromString(inputHtml, 'text/html')
-
-	// Find span elements containing placeholder
-	let xpath = `//span[text()[contains(., "${placeholder.replace(/"/g, '\\"')}")]]`
-	let nodesSnapshot = document.evaluate(
-		xpath, inputDocument, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null,
-	)
-
-	for (let i = 0; i < nodesSnapshot.snapshotLength; i++)
-	{
-		// Get span element containing "{SERVER_URL}"
-		const spanElement = nodesSnapshot.snapshotItem(i) as HTMLSpanElement
-		const style = spanElement.getAttribute('style') || ''
-
-		// Create new mark element
-		const markNewElement = document.createElement('mark')
-		const spanNewElement = document.createElement('span')
-		spanNewElement.setAttribute('style', style)
-		spanNewElement.innerHTML = replacement
-		markNewElement.appendChild(spanNewElement)
-
-		// Replace "{SERVER_URL}" text in span element with new mark element
-		spanElement.innerHTML = spanElement.innerHTML.replace(
-			placeholder,
-			markNewElement.outerHTML,
-		)
-	}
-
-	// Replace remaining occurrences of "{SERVER_URL}" in original html
-	inputDocument.body.innerHTML = inputDocument.body.innerHTML.replace(
-		placeholder,
-		replacement,
-	)
-
-	// Return updated html
-	return inputDocument.body.innerHTML
-}
-
 $: {
 	if (wrapper)
 	{
@@ -81,19 +36,16 @@ $: {
 		if (replaceServerUrl)
 		{
 			// Replace ChromaDB server URL
-			updatedHtml = replacePlaceholderInHtml(
-				updatedHtml,
+			updatedHtml = updatedHtml.replace(
 				'{SERVER_URL}',
 				sanitizeChromaServerUrl($chromaServerUrlStore) || 'https://chromadb.example.com',
 			)
-
 		}
 
 		if (replaceAuthToken)
 		{
 			// Replace auth token
-			updatedHtml = replacePlaceholderInHtml(
-				updatedHtml,
+			updatedHtml = updatedHtml.replace(
 				'{AUTH_TOKEN}',
 				$authTokenStore || '{AUTH_TOKEN}',
 			)
@@ -102,8 +54,7 @@ $: {
 		if (replaceCollectionName)
 		{
 			// Replace collection name
-			updatedHtml = replacePlaceholderInHtml(
-				updatedHtml,
+			updatedHtml = updatedHtml.replace(
 				'{COLLECTION_NAME}',
 				$inputCollectionNameStore || '{COLLECTION_NAME}',
 			)
@@ -112,8 +63,7 @@ $: {
 		if (replaceCollectionId)
 		{
 			// Replace collection ID
-			updatedHtml = replacePlaceholderInHtml(
-				updatedHtml,
+			updatedHtml = updatedHtml.replace(
 				'{COLLECTION_ID}',
 				$inputCollectionIdStore || '{COLLECTION_ID}',
 			)
@@ -122,8 +72,7 @@ $: {
 		if (replaceTargetCollectionId)
 		{
 			// Replace target collection ID
-			updatedHtml = replacePlaceholderInHtml(
-				updatedHtml,
+			updatedHtml = updatedHtml.replace(
 				'{TARGET_COLLECTION_ID}',
 				$inputTargetCollectionIdStore || '{TARGET_COLLECTION_ID}',
 			)
