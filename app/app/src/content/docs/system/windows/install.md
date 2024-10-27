@@ -67,3 +67,35 @@ Then, choose where to install Windows:
 - Click on "Next".
 
 Now, wait for the installation to complete and for your computer to reboot.
+
+
+## Setup phase
+
+After the installation, if everything went well, your computer should boot directly into Windows for the setup.
+If not, reboot and open the boot menu to select the drive you installed Windows on.
+
+On the first page, select your preferred region and keyboard layout. For example:
+
+- Region: `France`
+- Keyboard layout: `French (AZERTY)`
+- You will be able to add secondary keyboard layouts later in the configuration phase.
+
+For Windows Pro installations, select your installation type. Likely, you'll want to choose "Set up for personal use".
+
+Make sure to disconnect your computer from the internet before continuing the setup.
+- On a desktop, unplug the Ethernet cable.
+- On a laptop, decline to connect to a network when prompted.
+
+If prompted to sign in with a Microsoft account, decline and create a local account instead.
+To do this, choose to create an "Offline account" and then select "Limited experience".
+
+If you can't find the option to create an offline account, it may be hidden. To reveal it, you can:
+- Open the command prompt with `Shift + F10` and run `OOBE\BYPASSNRO`,
+- Your computer will reboot and you should be able to create an offline account after repeating the previous steps.
+
+Now, you'll be prompted to create an administrator account:
+Choose a username, secure password, and backup security questions.
+
+Then, Windows will ask your consent on privacy settings:
+- For all privacy settings, choose "no" or the least intrusive option.
+- For "Diagnostic data", choose "Required" or the least intrusive option.
