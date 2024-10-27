@@ -2,39 +2,37 @@
 title: Use ChromaDB API
 ---
 
+import ChromaServerUrl from '~/components/docs/dev/chromadb/api/ChromaServerUrl.svelte'
+import AuthToken from '~/components/docs/dev/chromadb/api/AuthToken.svelte'
+import InputCollectionName from '~/components/docs/dev/chromadb/api/InputCollectionName.svelte'
+import InputCollectionId from '~/components/docs/dev/chromadb/api/InputCollectionId.svelte'
+import InputTargetCollectionId from '~/components/docs/dev/chromadb/api/InputTargetCollectionId.svelte'
+import CodeWrapper from '~/components/docs/dev/chromadb/api/CodeWrapper.svelte'
+
+
 ## Configure input fields auto-fill
 
 Use the following input fields to auto-fill your configuration in API reference examples.
-
-import ChromaServerUrl from '~/components/docs/dev/chromadb/api/ChromaServerUrl.svelte'
 
 <ChromaServerUrl
 	label="Set the ChromaDB server URL"
 	client:visible
 />
 
-import AuthToken from '~/components/docs/dev/chromadb/api/AuthToken.svelte'
-
 <AuthToken
 	label="Set your authentication token"
 	client:visible
 />
-
-import InputCollectionName from '~/components/docs/dev/chromadb/api/InputCollectionName.svelte'
 
 <InputCollectionName
 	label="Set your collection name (used to create & delete collections)"
 	client:visible
 />
 
-import InputCollectionId from '~/components/docs/dev/chromadb/api/InputCollectionId.svelte'
-
 <InputCollectionId
 	label="Set your source collection id (used in read requests)"
 	client:visible
 />
-
-import InputTargetCollectionId from '~/components/docs/dev/chromadb/api/InputTargetCollectionId.svelte'
 
 <InputTargetCollectionId
 	label="Set your target collection id (used in write requests)"
@@ -48,25 +46,55 @@ import InputTargetCollectionId from '~/components/docs/dev/chromadb/api/InputTar
 
 GET `/api/v1/collections` route to list all collections.
 
-import CollectionsGet from '~/components/docs/dev/chromadb/api/CollectionsGet.svelte'
-
-<CollectionsGet client:visible />
+<CodeWrapper
+	replaceServerUrl={true}
+	replaceAuthToken={true}
+	client:visible
+>
+	```sh "{SERVER_URL}" "{AUTH_TOKEN}"
+	curl -X GET -v \
+		{SERVER_URL}/api/v1/collections \
+		-H "Authorization: Bearer {AUTH_TOKEN}"
+	```
+</CodeWrapper>
 
 ### Count items in collection
 
 GET `/api/v1/collections/{COLLECTION_ID}/count` route to count items in a collection.
 
-import CollectionCount from '~/components/docs/dev/chromadb/api/CollectionCount.svelte'
-
-<CollectionCount client:visible />
+<CodeWrapper
+	replaceServerUrl={true}
+	replaceAuthToken={true}
+	replaceCollectionId={true}
+	client:visible
+>
+	```sh "{SERVER_URL}" "{AUTH_TOKEN}" "{COLLECTION_ID}"
+	curl -X GET -v \
+		{SERVER_URL}/api/v1/collections/{COLLECTION_ID}/count \
+		-H "Authorization: Bearer {AUTH_TOKEN}"
+	```
+</CodeWrapper>
 
 ### Peek first item in collection
 
 POST `/api/v1/collections/{COLLECTION_ID}/get` route to peek at the first item in a collection.
 
-import CollectionPeek from '~/components/docs/dev/chromadb/api/CollectionPeek.svelte'
-
-<CollectionPeek client:visible />
+<CodeWrapper
+	replaceServerUrl={true}
+	replaceAuthToken={true}
+	replaceCollectionId={true}
+	client:visible
+>
+	```sh "{SERVER_URL}" "{AUTH_TOKEN}" "{COLLECTION_ID}"
+	curl -X POST -v \
+		{SERVER_URL}/api/v1/collections/{COLLECTION_ID}/get \
+		-H "Authorization: Bearer {AUTH_TOKEN}" \
+		-H "Content-Type: application/json" \
+		-d '{
+			"limit": 1
+		}'
+	```
+</CodeWrapper>
 
 
 ## Create or delete collections
@@ -75,9 +103,7 @@ import CollectionPeek from '~/components/docs/dev/chromadb/api/CollectionPeek.sv
 
 POST `/api/v1/collections` route to create a new collection using cosine similarity.
 
-import CollectionCreate from '~/components/docs/dev/chromadb/api/CollectionCreate.svelte'
-
-<CollectionCreate
+<CodeWrapper
 	replaceServerUrl={true}
 	replaceAuthToken={true}
 	replaceCollectionName={true}
@@ -96,24 +122,54 @@ import CollectionCreate from '~/components/docs/dev/chromadb/api/CollectionCreat
 			"get_or_create": true
 		}'
 	```
-</CollectionCreate>
+</CodeWrapper>
 
 ### Delete collection
 
 DELETE `/api/v1/collections/{COLLECTION_NAME}` route to delete a collection.
 
-import CollectionDelete from '~/components/docs/dev/chromadb/api/CollectionDelete.svelte'
-
-<CollectionDelete client:visible />
+<CodeWrapper
+	replaceServerUrl={true}
+	replaceAuthToken={true}
+	replaceCollectionName={true}
+	client:visible
+>
+	```sh "{SERVER_URL}" "{AUTH_TOKEN}" "{COLLECTION_NAME}"
+	curl -X DELETE -v \
+		{SERVER_URL}/api/v1/collections/{COLLECTION_NAME} \
+		-H "Authorization: Bearer {AUTH_TOKEN}"
+	```
+</CodeWrapper>
 
 
 ## Advanced operations
 
 ### Copy collection contents to another collection
 
-- POST `/api/v1/collections/{SOURCE_COLLECTION_ID}/get` to get entire collection contents.
+- POST `/api/v1/collections/{COLLECTION_ID}/get` to get entire collection contents.
 - POST `/api/v1/collections/{TARGET_COLLECTION_ID}/add` to insert contents into another collection.
 
-import CollectionCopy from '~/components/docs/dev/chromadb/api/CollectionCopy.svelte'
+<CodeWrapper
+	replaceServerUrl={true}
+	replaceAuthToken={true}
+	replaceCollectionId={true}
+	replaceTargetCollectionId={true}
+	client:visible
+>
+	```sh "{SERVER_URL}" "{AUTH_TOKEN}" "{COLLECTION_ID}" "{TARGET_COLLECTION_ID}"
+	curl -X POST -v \
+		{SERVER_URL}/api/v1/collections/{COLLECTION_ID}/get \
+		-H "Authorization: Bearer {AUTH_TOKEN}" \
+		-H "Content-Type: application/json" \
+		-d '{
+			"include": [ "embeddings", "documents", "metadatas" ]
+		}' \
+		{'>'} collection.json
 
-<CollectionCopy client:visible />
+	curl -X POST -v \
+		{SERVER_URL}/api/v1/collections/{TARGET_COLLECTION_ID}/add \
+		-H "Authorization: Bearer {AUTH_TOKEN}" \
+		-H "Content-Type: application/json" \
+		-d @collection.json
+	```
+</CodeWrapper>
