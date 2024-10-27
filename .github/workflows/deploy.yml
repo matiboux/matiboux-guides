@@ -2,7 +2,7 @@ name: Deploy CD
 
 on:
 
-  # Run on push events on primary branches
+  # Run on push on primary branches
   push:
     branches:
       - main
@@ -19,7 +19,7 @@ on:
 permissions:
   contents: read
 
-# Allow one concurrent deployment
+# Set workflow concurrency rules
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
