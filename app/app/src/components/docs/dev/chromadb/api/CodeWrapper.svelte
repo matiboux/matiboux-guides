@@ -36,7 +36,7 @@ $: {
 		if (replaceServerUrl)
 		{
 			// Replace ChromaDB server URL
-			updatedHtml = updatedHtml.replace(
+			updatedHtml = updatedHtml.replaceAll(
 				'{SERVER_URL}',
 				sanitizeChromaServerUrl($chromaServerUrlStore) || 'https://chromadb.example.com',
 			)
@@ -45,7 +45,7 @@ $: {
 		if (replaceAuthToken)
 		{
 			// Replace auth token
-			updatedHtml = updatedHtml.replace(
+			updatedHtml = updatedHtml.replaceAll(
 				'{AUTH_TOKEN}',
 				$authTokenStore || '{AUTH_TOKEN}',
 			)
@@ -54,7 +54,7 @@ $: {
 		if (replaceCollectionName)
 		{
 			// Replace collection name
-			updatedHtml = updatedHtml.replace(
+			updatedHtml = updatedHtml.replaceAll(
 				'{COLLECTION_NAME}',
 				$inputCollectionNameStore || '{COLLECTION_NAME}',
 			)
@@ -63,7 +63,7 @@ $: {
 		if (replaceCollectionId)
 		{
 			// Replace collection ID
-			updatedHtml = updatedHtml.replace(
+			updatedHtml = updatedHtml.replaceAll(
 				'{COLLECTION_ID}',
 				$inputCollectionIdStore || '{COLLECTION_ID}',
 			)
@@ -72,7 +72,7 @@ $: {
 		if (replaceTargetCollectionId)
 		{
 			// Replace target collection ID
-			updatedHtml = updatedHtml.replace(
+			updatedHtml = updatedHtml.replaceAll(
 				'{TARGET_COLLECTION_ID}',
 				$inputTargetCollectionIdStore || '{TARGET_COLLECTION_ID}',
 			)
