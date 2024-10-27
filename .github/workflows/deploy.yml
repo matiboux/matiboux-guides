@@ -1,8 +1,8 @@
-name: Deploy to GitHub Pages
+name: Deploy CD
 
 on:
 
-  # Run on push events on primary branches
+  # Run on push on primary branches
   push:
     branches:
       - main
@@ -19,7 +19,7 @@ on:
 permissions:
   contents: read
 
-# Allow one concurrent deployment
+# Set workflow concurrency rules
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
@@ -28,7 +28,7 @@ jobs:
 
   # Build job
   build:
-    name: Build Astro site artifact
+    name: Build
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -36,6 +36,9 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        # Fetch entire Git history
+        fetch-depth: 0
 
     - name: Copy Git history in app source folder
       run: |
@@ -75,7 +78,7 @@ jobs:
 
   # Deployment job
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deployment
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
