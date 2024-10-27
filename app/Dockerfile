@@ -88,7 +88,7 @@ ARG GITHUB_SHA=""
 ENV GITHUB_SHA=${GITHUB_SHA}
 
 # Build application
-RUN npm run build
+RUN npm run build-only
 
 
 # --
