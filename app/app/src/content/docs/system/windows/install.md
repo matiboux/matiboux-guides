@@ -110,40 +110,48 @@ If you are prompted to use Microsoft Edge, decline.
 Now it is time for you to configure Windows.
 There are some important system settings to review using your administrator account:
 
-- In "System" settings:
-  - In "Remote desktop":
-    - Disable "Remote Desktop" unless required for you.
+<details>
+<summary>In "System" settings</summary>
 
-<span></span>
+- In "Remote desktop":
+  - Disable "Remote Desktop" unless required for you.
 
-- In "Search" settings:
-  - In "Searching Windows":
-    - Optionally, select the "Enhanced" indexing method (may not be recommended on a laptop).
+</details>
 
-<span></span>
+<details>
+<summary>In "Search" settings</summary>
 
-- In "Update & Security" settings:
-  - In "Activation":
-    - If you reinstalled Windows, check if Windows automatically restored your license.
-      If not, you may activate Windows now if you want.
-      Activating Windows is required to access all security & personalization settings.
-  - In "Windows Update":
-    - Click on "Check for updates".
-  - In "Windows Security":
-    - Review issues if any, and security settings.
-    - In "App & browser control":
-      - In "Reputation-based protection":
-        - Enable "Potentially unwanted app blocking".
-    - In "Device Security":
-      - In "Core isolation":
-        - Enable "Memory integrity"
-      - In "Security processor details":
-        - Verify that the Trusted Platform Module (TPM) is enabled.
-  - In "Find my device":
-    - This setting requires location access and a Microsoft account.
-      You should consider enabling it later if you are using a laptop.
-  - In "Windows Insider Program":
-    - You may join the Insider program here if you want to use beta versions of Windows.
+- In "Searching Windows":
+  - Optionally, select the "Enhanced" indexing method (may not be recommended on a laptop).
+
+</details>
+
+<details>
+<summary>In "Update & Security" settings</summary>
+
+- In "Activation":
+  - If you reinstalled Windows, check if Windows automatically restored your license.
+    If not, you may activate Windows now if you want.
+    Activating Windows is required to access all security & personalization settings.
+- In "Windows Update":
+  - Click on "Check for updates".
+- In "Windows Security":
+  - Review issues if any, and security settings.
+  - In "App & browser control":
+    - In "Reputation-based protection":
+      - Enable "Potentially unwanted app blocking".
+  - In "Device Security":
+    - In "Core isolation":
+      - Enable "Memory integrity"
+    - In "Security processor details":
+      - Verify that the Trusted Platform Module (TPM) is enabled.
+- In "Find my device":
+  - This setting requires location access and a Microsoft account.
+    You should consider enabling it later if you are using a laptop.
+- In "Windows Insider Program":
+  - You may join the Insider program here if you want to use beta versions of Windows.
+
+</details>
 
 Now, it is highly recommended to create a standard user account for your daily use.
 This will help you avoid accidentally making changes with privileged access and improve security.
