@@ -18,6 +18,8 @@ or the ISO file for the Windows version you want to install.
 - [Windows 10 download page](https://www.microsoft.com/en-us/software-download/windows10)
 - [Windows 11 download page](https://www.microsoft.com/en-us/software-download/windows11)
 
+Of course, backup all your data from the system drive partition of the target computer before starting the installation.
+
 ### MediaCreationTool
 
 You can download the MediaCreationTool from the Windows download page from another Windows computer.
@@ -35,3 +37,33 @@ To bypass this and download the ISO file, you can spoof your browser user agent 
 
 Once you have the ISO file, you can use a tool like Rufus or Balena Etcher to create a bootable USB drive.
 You will need a USB drive of at least 8GB.
+
+
+## Installation phase
+
+Boot your computer on the Windows installation support drive.
+
+On the first page, select your preferred language and keyboard layout. For example:
+
+- Language: `English (United States)`
+- Time format: `French (France)`
+- Keyboard input: `French`
+
+Continue:
+
+- Choose "I don't have a license key" when you're prompted to activate Windows, you can activate it later.
+- Select your Windows version. Usually, you'd choose Windows Home or Windows Pro.
+- Agree to terms and conditions.
+- Choose "Custom" installation for a fresh install.
+
+Then, choose where to install Windows:
+
+- Choose the hard drive you want to install Windows on.
+- Delete all unwanted partition from the drive, including reserved and recovery partitions.
+  For reinstalling on a drive dedicated to Windows, you can delete all partitions (make sure you backed up your data).
+- Select the unallocated space on the drive.
+- Click on "New", leave the maximum size and confirm.
+- Select the largest newly created partition on the drive.
+- Click on "Next".
+
+Now, wait for the installation to complete and for your computer to reboot.
