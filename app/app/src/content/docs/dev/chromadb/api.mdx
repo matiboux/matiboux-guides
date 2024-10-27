@@ -77,7 +77,26 @@ POST `/api/v1/collections` route to create a new collection using cosine similar
 
 import CollectionCreate from '~/components/docs/dev/chromadb/api/CollectionCreate.svelte'
 
-<CollectionCreate client:visible />
+<CollectionCreate
+	replaceServerUrl={true}
+	replaceAuthToken={true}
+	replaceCollectionName={true}
+	client:visible
+>
+	```sh
+	curl -X POST -v \
+		{SERVER_URL}/api/v1/collections \
+		-H "Authorization: Bearer {AUTH_TOKEN}" \
+		-H "Content-Type: application/json" \
+		-d '{
+			"name": "{COLLECTION_NAME}",
+			"metadata": {
+				"hnsw:space": "cosine"
+			},
+			"get_or_create": true
+		}'
+	```
+</CollectionCreate>
 
 ### Delete collection
 
