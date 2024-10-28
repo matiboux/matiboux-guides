@@ -624,3 +624,23 @@ you can join the Windows Insider program from the "Advanced options" in the "Win
 ### Install WSL
 
 See the dedicated guide on how to [install Windows Subsystem for Linux (WSL)](</system/wsl/install>).
+
+
+## Upgrade to Windows 11
+
+If you enabled Windows Insider in the Beta channel, you might be able to upgrade to Windows 11 via Windows Update.
+
+Once Windows 11 installed, there are some settings you should check again.
+
+### Settings
+
+<details>
+<summary>In "Personalization" settings</summary>
+
+- In "Taskbar":
+  - Disable "Widgets" taskbar item
+  - Disable "Chat" taskbar item
+  - Set Taskbar alignment to "Left"
+  - Enable "Automatically hide the taskbar"
+
+</details>
