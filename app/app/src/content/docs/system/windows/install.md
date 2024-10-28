@@ -160,3 +160,448 @@ In "Accounts" settings and "Family & other users", create a new standard user ac
 - Click on "Add someone else to this PC".
 - Choose to create an "Offline account" (you will be able to link it to a Microsoft account later).
 - Choose a username, a secure password, and backup security questions.
+
+
+## User configuration phase
+
+After completing the system configuration, you can now configure your user accounts.
+You would likely repeat the following steps for both your administrator and standard user accounts.
+
+### Settings
+
+It is not recommended to link your Microsoft account with the administrator account.
+However, you may want to do so with your standard user account and you can do this now in "Accounts" settings:
+Log in with your Microsoft account, confirm and let Windows sync your settings.
+
+Now, open the "Settings" app and review its home page:
+
+<details>
+<summary>If you see the "Get more out of Windows" message</summary>
+
+Open the "Get more out of Windows" message:
+- In "Use recommended browser settings":
+  - Select "Don't update your browser settings"
+
+</details>
+
+<details>
+<summary>If you want to configure a synced OneDrive folder</summary>
+
+- Click to sign in with your Microsoft account for OneDrive.
+- Select the location for your OneDrive folder. I recommend using a data drive if you have one.
+- Unselect "Desktop", "Documents", "Pictures" for sync.
+- Skip the tutorial.
+- Click on "Later" when prompted about the mobile app.
+- Click on "Open my OneDrive folder" to finish and verify its content.
+
+</details>
+
+Then, you can review the settings under each category of the "Settings" app:
+
+<details>
+<summary>In "System" settings</summary>
+
+- Display : _Nothing in particular._
+- Sound : _Nothing in particular._
+- Notifications & actions :
+  - Enable "Get notifications from apps and other senders"
+  - Disable "Show notifications on the lock screen"
+  - Enable "Show reminders and incoming VoIP calls on the lock screen"
+  - Enable "Allow notifications to play sounds"
+  - Enable "Show me the Windows welcome experience [...]"
+  - Enable "Suggest ways I can finish setting up my device [...]"
+  - Enable "Get tips, tricks, and suggestions [...]"
+- Focus assist:
+  - Select "Priority only"
+  - Enable "When I'm suplicating my display"
+  - Enable "When I'm playing a game"
+  - Enable "When I'm using an app in full screen mode"
+  - Enable "Show a summary of what I missed while focus assis was on"
+- Power & sleep:
+  - Set "When plugged in, turn off after" to "10 minutes"
+  - Set "When plugged in, PC goes to sleep after" to "Never"
+  - Set "Power mode" to "Best performance" (desktop PC only)
+  - _Change Settings page to save changes and come back to "Power & sleep"._
+  - In "Additional power settings":
+    - Next to the selected power plan, usually "Balanced":
+      - In "Change plan settings":
+        - In "Change advanced power settings":
+          - Set "Hard disk / Turn off hard disk after" to "Never"
+          - Verify "Sleep / Sleep after" is set to "Never"
+          - Set "Sleep / Hibernate after" to "Never"
+          - Verify "Display / Turn off display after" is set to "10 minutes"
+    - In "Choose what the power buttons do":
+      - _Click on "Change settings that are currently unavailable"_
+      - Set "Power button" to "Shutdown"
+      - Set "Sleep button" to "Sleep"
+      - Disable "Turn on fast startup"
+      - Enable "Sleep"
+      - Enable "Hibernate"
+      - Enable "Lock"
+- Storage
+  - Enable "Storage Sense"
+  - Open "Configure Storage Sense or run it now":
+    - Set "Run Storage Sense" to "Every week"
+    - Enable "Delete temporary files [...]"
+    - Set "Delete files in my recycle bin [...]" to "30 days"
+    - Set "Delete files in my Downloads folder [...]" to "Never"
+    - Optionally, click on "Clean now"
+  - In "Temporary files":
+    - Select all temporary files and click on "Remove files"
+  <!--- In "Change where new content is save":
+    - Set "New apps will save to" to "System (C:)"
+    - For all other options, you may choose to select another drive, used for your data.-->
+  - In "Optimize Drives":
+    - Select the System drive and optimize it
+    - Optionally, analyse and optimize the other drives
+    - Turn on "Scheduled optimization" and set its frequency to "Weekly"
+- Tablet
+  - Set "When I sign in" to "Use the appropriate mode for my hardware"
+  - Set "When I use this device as a tablet" to "Ask me before switching modes"
+- Multitasking
+  - Set "Pressing Alt + Tab shows" to "Open windows only"
+- Projecting to this PC: nothing in particular, unless supported by your device.
+- Shared experiences: nothing in particular
+- Clipboard:
+  - Enable clipboard history
+  - Disable "Sync across devices" (if applicable)
+- Remote desktop: _See system configuration phase._
+- In "About":
+  - Click on "Rename this PC" and give your PC a fancy name.
+  - In "Advanced system settings":
+    - _Requires to enter the admin password._
+    - In "Remote":
+      - Disable "Allow Remote Assistance connections to this computer"
+
+</details>
+
+<details>
+<summary>In "Devices" settings</summary>
+
+- In "Bluetooth & other devices":
+  - Turn off Bluetooth if you're not using it
+- In "Printers & scanners": _Nothing in particular._
+- In "Mouse": _Nothing in particular._
+- In "Typing":
+  - Enable all in "Spelling"
+  - Enable all in "Typing"
+  - _Not sure about enabling suggestions in "Hardware keyboard"_
+  - Enable "Multilingual text suggestions"
+- In "Pen & Windows Ink": _Nothing in particular._
+- In "Autoplay": _Nothing in particular._
+- In "USB": _Nothing in particular._
+
+</details>
+
+<!-- In "Phone": _Nothing in particular._ -->
+
+<details>
+<summary>In "Network & Internet" settings</summary>
+
+- In "Status":
+  - In "Properties" for the current network's:
+    - Set "Network profile" to "Private" if applicable
+- In "Ethernet": nothing in particular
+- In "Dial up": nothing in particular
+- In "VPN": nothing in particular
+- In "Airplane mode": nothing in particular
+- In "Mobile Hotspot":
+  - Change the network settings if this is supported by your device
+- In "Proxy": nothing in particular
+
+</details>
+
+<details>
+<summary>In "Personalization" settings</summary>
+
+- In "Background":
+  - Customize your background
+  - Your background may have been synced with your Microsoft account
+- In "Colors":
+  - Select "Custom" color mode
+  - Select "Dark" as the "default Windows mode"
+  - Select "Light" as the "default app mode"
+  - Enable transparency effects
+- In "Lock screen":
+  - Customize your background
+  - Customize your apps
+- In "Themes": nothing in particular
+- In "Fonts": nothing in particular
+- In "Start":
+  - Enable "Show more tiles on Start" (recommended on desktop PC)
+  - Enable "Show app list in Start menu"
+  - Enable "Show recently added apps"
+  - Enable "Show used apps"
+  - Disable "Show suggestions occasionnally in Start"
+  - Disable "Show Start full screen"
+  - Enable "Show recently opened items in Jump Lists or the taskba and in File Explorer Quick Access"
+  - In "Choose which folders appear on Start":
+    - Enable "File Explorer"
+    - Enable "Settings"
+    - Disable "Documents"
+    - Disable "Downloads"
+    - Disable "Music"
+    - Disable "Pictures"
+    - Disable "Videos"
+    - Disable "Network"
+    - Enable "Personal folder"
+- In "Taskbar":
+  - Enable "Lock the taskbar"
+  - Enable "Automatically hide the taskbar in desktop mode"
+  - Disable "Automatically hide the taskbar in tablet mode"
+  - Disable "Use small taskbar buttons"
+  - Disable "Use Peek to preview the desktop [...]"
+  - Enable "Replace Command Prompt with Windows Powershell [...]"
+  - Enable "Show badges on taskbar buttons"
+  - Set "Taskbar location on screen" to "Bottom"
+  - Set "Combine taskbar buttons" to "Always, hide labels"
+  - Optionally, customize in "Select which icons appear on the taskbar"
+  - In "Turn system icons on or off":
+    - Enable "Touch keyboard"
+    - Enable "Windows Ink Workspace"
+    - Disable "Meet Now"
+  - Disable "Show contacts on the taskbar"
+
+</details>
+
+<details>
+<summary>In "Apps" settings</summary>
+
+- In "Apps & features":
+  - In "Optional features":
+    - In "More Windows features":
+      - Enable "Windows Subsystem for Linux" (for developers)
+      - Do not reboot right away
+- In "Default apps":
+  - You'll customize this after having installed some apps
+  - Keep in mind the "Choose default apps by file type" menu
+  - Keep in mind the "Choose default apps by protocol" menu
+  - Keep in mind the "Set defaults by apps" menu
+- In "Offline maps": nothing in particular
+- In "Apps for websites": nothing in particular
+- In "Video playback":
+  - Enable "Automatically process video to enhance it"
+- In "Startup":
+  - Disable "Microsoft Edge"
+
+</details>
+
+<details>
+<summary>In "Accounts" settings</summary>
+
+- In "Your info": nothing in particular
+- In "Email & accounts": nothing in particular
+- In "Sign-in options":
+  - Add a Windows Hello sign-in option if you want
+  - Disable "Dynamic lock"
+  - Disable "Restart apps"
+  - Disable "Show account details [...] on the sign-in screen"
+  - Enable "Use my sign-in info to automatically finish setting up my device after an update or restart"
+- In "Acces work or school": nothing in particular
+- In "Sync your setiings":
+  - Enable "Sync settings"
+  - Enable all settings
+
+</details>
+
+<details>
+<summary>In "System" settings</summary>
+
+- In "Time & Language":
+  - In "Date & Time":
+    - Set the time zone
+    - Enable "Adjust for daylight saving time automatically"
+  - In "Region":
+    - Set "Country or region" to "France"
+    - Set "Regional format" to "English (Europe)"
+    - Review "Regional format data"
+  - In "Language":
+    - Add the language "French (France)":
+      - Install all packages
+    - In "French (France)":
+      - Verify the installed keyboard layout: "French AZERTY"
+    - In "English (United States)":
+      - Verify the installed keyboard layout: "US QWERTY"
+    - Set "Windows display language" to "English (United States)"
+    - In "Keyboard":
+      - Select "French (France)" as input method
+  - In "Speech":
+    - Select "French (France)" as speech language
+    - Enable "Recognize non-native accents for this langgages
+
+</details>
+
+<details>
+<summary>In "Gaming" settings</summary>
+
+- In "Xbox Game Bar": nothing in particular
+- In "Captures": nothing in particular
+- In "Game Mode":
+  - Enable "Game Mode"
+- In "Xbox Management": nothing in particular
+
+</details>
+
+<details>
+<summary>In "Ease of Access" settings</summary>
+
+- In "Keyboard":
+  - Disable "Allow the shortcut key to start Sticky Keys"
+  - Disable "Allow the shortcut key to start Toggle Keys"
+  - Disable "Allow the shortcut key to start Filter Keys"
+
+</details>
+
+<details>
+<summary>In "Search" settings</summary>
+
+- In "Permission & History":
+  - Set "SafeSearch" to "Off" (depending on the user)
+- In "Searching Windows":
+  - _Requires to be logged as an administrator to edit._
+  - Select the "Enhanced" indexing method.
+
+</details>
+
+<details>
+<summary>In "Privacy" settings</summary>
+
+- In "General":
+  - Enable all settings
+- In "Speech":
+  - Enable "Online speech recognition"
+  - Disable "contributing my voice clips"
+- In "Inking & typing personalization":
+  - Enable the setting
+- In "Diagnostics & feeback":
+  - Set to "Optional diagnostic data"
+  - Disabled "Improve inking and typing"
+  - Disabled "Tailored experiences"
+  - Disabled "View diagnostic data"
+  - Set "Feedback frequency" to "Automatically"
+- In "Activity histoiry":
+  - Enable "Store my activity history on this device"
+  - Enable "Show activities from these accounts for your Microsoft account (if applicable)
+- For all app permissions:
+  - Enable the permission for your device
+  - Enable "Allow apps to access your [...]"
+  - Remove permission to unused apps (like 3D Viewer, Skype, ...)
+    - "3D Viewer" has way too much permissions enabled by default
+    - "Camera" can keep its access to camera and microphone
+    - "Mail and Calendar" can keep its access to contacts, calendar and email
+  - Enable "Allow desktop apps to access your [...]"
+- In "Voice actiation" (special case):
+  - Disable "Allow apps to use voice activation when this device is locked"
+  - Disable "Allow apps to use voice activation"
+  - Remove permission to unused apps (like 3D Viewer and Skype)
+- In "Other devices":
+  - Disable "Communicate with unpaired devices"
+- In "Background apps": nothing in particular
+
+</details>
+
+<details>
+<summary>In "Update & Security" settings</summary>
+
+- In "Windows Update":
+  - Click on "Check for updates"
+  - In "Advanced options":
+    - Enable "Receive updates for other Microsoft products when you update Windows"
+- In "Delivery Optimization":
+  - Enable "Allow downloads from other PCs"
+  - Select "PCs on my local network"
+- In "Windows Security":
+  - Review problems and all settings
+  - In "App & browser control":
+    - In "Reputation-based protection":
+      - Enable "Potentially unwanted app blocking"
+  - In "Device Security":
+    - In "Core isolation":
+      - Enable "Memory integrity"
+    - In "Security processor details":
+      - Verify that the TPM is enabled
+- In "Backup": nothing in particular
+- In "Troubleshoot": nothing in particular
+- In "Recovery": nothing in particular
+- In "Activation":
+  - Activate Windows if it is not already
+- In "Find my device":
+  - _Requires to be logged as an administrator into a Microsoft account._
+
+</details>
+
+### File explorer
+
+Open the file explorer.
+
+<details>
+<summary>In "This PC" (the list of drives)</summary>
+
+- Rename the "Local Disk" (C:) to "System"
+
+</details>
+
+<details>
+<summary>In "View" menu</summary>
+
+- Disable "Item check boxes"
+- Enable "File name extensions"
+- Enable "Hidden files"
+
+<span></span>
+
+- Open "Options":
+  - Review settings
+
+</details>
+
+### Personalize the taskbar
+
+<details>
+<summary>Right-click the taskbar and configure it</summary>
+
+- In "Search", select "Show search icon"
+- In "News and interests", select "Turn off"
+- Disable "Show Cortana button"
+- Enable "Show Task View button"
+- Enable "Show Windows Ink Workspace button"
+- Enable "Show touch keyboard button"
+
+</details>
+
+<details>
+<summary>Disable the "Meet" icon</summary>
+
+- Right click on the "Meet" icon
+- Select "Turn off" (if not disabled already)
+
+</details>
+
+### Uninstall default apps
+
+Windows comes with pre-installed apps.
+You should uninstall all unwanted sponsored apps and games.
+
+Open the start menu and look for apps you don't want to keep.
+
+<details>
+<summary>Pre-installed apps you might want to uninstall</summary>
+
+- Office
+- Outlook (shortcut)
+- Word (shortcut)
+- Excel (shortcut)
+- PowerPoint (shortcut)
+- OneNote
+- Skype
+- Microsoft To Do
+- Microsoft News
+- Microsoft
+- Spotify
+- Roblox
+- TikTok
+- Hidden City: Hidden Object Aventure
+- Photoshop Express
+- Dolby Access
+
+</details>
