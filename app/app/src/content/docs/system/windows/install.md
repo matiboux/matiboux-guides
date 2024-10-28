@@ -577,6 +577,42 @@ Open the file explorer.
 
 </details>
 
+<details>
+<summary>Suggested pinned apps</summary>
+
+Here are my suggestions for pinned apps in the taskbar, in a suggested order:
+
+- Common Windows apps: like "File Explorer" and "Notepad".
+- Your favorite web browser: like "Firefox", "Google Chrome" or "Microsoft Edge".
+- Your favorite game launchers: like "Steam", "Epic Games" or "GOG Galaxy".
+- Your favorite developer apps: like "Visual Studio Code" or "WinSCP".
+- Your favorite communication apps: like "Telegram", "Discord" or "Slack".
+- Your favorite utilities.
+- Your favorite multimedia apps: like "Spotify" or "VLC".
+
+<details>
+<summary>My actual pinned apps</summary>
+
+- File Explorer
+- Notepad
+- Google Chrome
+- Steam
+- WinSCP
+- Visual Studio Code
+- Telegram
+- Discord
+- Buttercup
+
+</details>
+
+:::tip
+Pinned apps in taskbar are handy for your favorite apps and utilities.
+You can open the first 10 quickly with the `Windows + [number]` keyboard shortcut, relative to their position.
+:::
+
+
+</details>
+
 ### Uninstall default apps
 
 Windows comes with pre-installed apps.
