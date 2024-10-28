@@ -619,3 +619,8 @@ Do this also from the "For developers" system settings.
 
 Finally, if you want to use unreleased Windows features,
 you can join the Windows Insider program from the "Advanced options" in the "Windows Update" settings.
+
+
+### Install WSL
+
+See the dedicated guide on how to [install Windows Subsystem for Linux (WSL)](</system/wsl/install>).
