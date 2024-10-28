@@ -605,3 +605,17 @@ Open the start menu and look for apps you don't want to keep.
 - Dolby Access
 
 </details>
+
+
+## Developer configuration
+
+### Settings
+
+You'd likely want to apply File Explorer developer-friendly settings.
+Do this from the "For developers" system settings.
+
+If you plan on running PowerShell scripts, you may want to apply the PowerShell developer-friendly "execution policy" setting.
+Do this also from the "For developers" system settings.
+
+Finally, if you want to use unreleased Windows features,
+you can join the Windows Insider program from the "Advanced options" in the "Windows Update" settings.
