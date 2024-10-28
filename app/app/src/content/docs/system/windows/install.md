@@ -587,22 +587,37 @@ Open the start menu and look for apps you don't want to keep.
 <details>
 <summary>Pre-installed apps you might want to uninstall</summary>
 
+Microsoft apps:
+
 - Office
 - Outlook (shortcut)
 - Word (shortcut)
 - Excel (shortcut)
 - PowerPoint (shortcut)
 - OneNote
+- Microsoft Teams
 - Skype
 - Microsoft To Do
 - Microsoft News
-- Microsoft
-- Spotify
-- Roblox
-- TikTok
-- Hidden City: Hidden Object Aventure
-- Photoshop Express
+
+Sponsored apps:
+
+- Adobe Lightroom
+- Clipchamp
 - Dolby Access
+- Hidden City: Hidden Object Aventure
+- Line
+- Logiciel de retouche de photos
+- Messenger
+- Office
+- Photoshop Express
+- Picsart
+- Roblox
+- Snipping Tool
+- Spotify
+- TikTok
+- Whatsapp
+- Wikipedia
 
 </details>
 
