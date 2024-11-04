@@ -53,6 +53,11 @@ export default defineConfig({
 							autogenerate: { directory: 'dev/docker', collapsed: true },
 						},
 						{
+							label: 'Elasticsearch',
+							collapsed: true,
+							autogenerate: { directory: 'dev/elastic', collapsed: true },
+						},
+						{
 							label: 'GitHub',
 							collapsed: true,
 							autogenerate: { directory: 'dev/github', collapsed: true },
