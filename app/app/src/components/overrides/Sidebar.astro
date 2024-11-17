@@ -6,7 +6,60 @@ import StarlightSidebar from '@astrojs/starlight/components/Sidebar.astro'
 import Copyright from '~/components/Copyright.astro'
 
 const basePath = path.dirname(`/${Astro.props.id}`)
-console.log(basePath)
+
+function filterSidebar(inputEntries: any[], basePath: string, level: number = 0): any[]
+{
+	// Recursively applies to list of entries
+
+	const newEntries = inputEntries
+		.reduce(
+			(entries, entry) =>
+			{
+				if (entry.type === 'link')
+				{
+					if (level <= 0 && entry.href.startsWith('http'))
+					{
+						entries.push(entry)
+						return entries
+					}
+
+					if (entry.href.startsWith(basePath))
+					{
+						entries.push(entry)
+						return entries
+					}
+
+					entries.push({
+							...entry,
+							label: `x_${entry.label}`,
+						})
+					return entries
+				}
+
+				if (entry.type == 'group')
+				{
+					const filteredEntries = filterSidebar(entry.entries, basePath, level + 1)
+					entries.push({
+						...entry,
+						entries: filteredEntries,
+					})
+					return entries
+				}
+
+				// Unknown entry type
+				entries.push({
+					...entry,
+					label: `?_${entry.label}`,
+				})
+				return entries
+			},
+			[],
+		)
+
+	return newEntries
+}
+
+Astro.props.sidebar = filterSidebar(Astro.props.sidebar, basePath)
 ---
 
 <div class="sidebar-wrapper">
