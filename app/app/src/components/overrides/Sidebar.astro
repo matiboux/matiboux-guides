@@ -60,6 +60,27 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 0)
 						return entries
 					}
 
+					if (filteredEntries.length === 1)
+					{
+						// Group has only one entry
+
+						// Replace group with entry
+						entries.push({
+							...filteredEntries[0],
+							label: (
+								filteredEntries[0].attrs?.slash
+									? filteredEntries[0].label
+									: entry.label + ' / ' + filteredEntries[0].label
+							),
+							attrs: {
+								...filteredEntries[0].attrs,
+								...(filteredEntries[0].type === 'link' ? { class: 'large' } : {}),
+								slash: true,
+							},
+						})
+						return entries
+					}
+
 					entries.push({
 						...entry,
 						entries: filteredEntries,
