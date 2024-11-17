@@ -43,16 +43,23 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 0)
 						}
 					}
 
-					entries.push({
-							...entry,
-							label: `x_${entry.label}`,
-						})
+					// entries.push({
+					// 		...entry,
+					// 		label: `x_${entry.label}`,
+					// 	})
 					return entries
 				}
 
 				if (entry.type == 'group')
 				{
 					const filteredEntries = filterSidebar(entry.entries, basePath, level + 1)
+
+					if (filteredEntries.length <= 0)
+					{
+						// Skip empty group
+						return entries
+					}
+
 					entries.push({
 						...entry,
 						entries: filteredEntries,
