@@ -17,16 +17,30 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 0)
 			{
 				if (entry.type === 'link')
 				{
-					if (level <= 0 && entry.href.startsWith('http'))
+					if (entry.href.startsWith(basePath))
 					{
 						entries.push(entry)
 						return entries
 					}
 
-					if (entry.href.startsWith(basePath))
+					if (level <= 0)
 					{
-						entries.push(entry)
-						return entries
+						if (entry.href.startsWith('http'))
+						{
+							entries.push(entry)
+							return entries
+						}
+
+						const basePathLevels = basePath.split('/').length - 1
+						if (entry.href === '/' && basePathLevels <= 1)
+						{
+							// Keep home link
+							entries.push({
+								...entry,
+								label: '← ' + entry.label,
+							})
+							return entries
+						}
 					}
 
 					entries.push({
