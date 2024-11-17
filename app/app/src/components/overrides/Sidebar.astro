@@ -1,7 +1,12 @@
 ---
+import path from 'node:path'
+
 import StarlightSidebar from '@astrojs/starlight/components/Sidebar.astro'
 
 import Copyright from '~/components/Copyright.astro'
+
+const basePath = path.dirname(`/${Astro.props.id}`)
+console.log(basePath)
 ---
 
 <div class="sidebar-wrapper">
