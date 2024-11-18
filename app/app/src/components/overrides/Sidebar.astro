@@ -53,7 +53,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 {
 	// Recursively applies to list of entries
 
-	const basePathLevels = basePath.split('/').length - 1
+	const basePathLevel = basePath.split('/').length - 1
 	const reducedEntries = inputEntries
 		.reduce<SidebarReducedEntries>(
 			(previous, entry) =>
@@ -62,6 +62,8 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 
 				if (entry.type === 'link')
 				{
+					// Handle link entry
+
 					if (entry.href.startsWith(basePath))
 					{
 						entries.push(entry)
@@ -72,17 +74,8 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 					{
 						if (entry.href.startsWith('http'))
 						{
+							// Keep external link
 							entries.push(entry)
-							return [ entries, options ]
-						}
-
-						if (entry.href === '/' && basePathLevels <= 1)
-						{
-							// Keep home link
-							entries.push({
-								...entry,
-								label: '← ' + entry.label,
-							})
 							return [ entries, options ]
 						}
 					}
@@ -90,9 +83,12 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 					return [ entries, options ]
 				}
 
-				if (entry.type == 'group')
+				if (entry.type === 'group')
 				{
-					const [ filteredEntries, _ ] = filterSidebar(entry.entries, basePath, level + 1)
+					// Handle group entry
+
+					const [ filteredEntries, subOptions ] = filterSidebar(entry.entries, basePath, level + 1)
+					options.hasBackLink = options.hasBackLink || subOptions.hasBackLink
 
 					if (filteredEntries.length <= 0)
 					{
@@ -100,7 +96,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						return [ entries, options ]
 					}
 
-					if (level > basePathLevels && level >= 2)
+					if (level > basePathLevel && level >= 2)
 					{
 						// Fold higher level groups
 						// Start from level 2
@@ -111,69 +107,64 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						// Replace group with entry
 						entries.push({
 							...indexOrFirstEntry,
-							label: `${indexOrFirstEntry.label} : ${level} >= ${basePathLevels}`,
+							label: `${indexOrFirstEntry.label} →`,
 							attrs: {
 								class: 'large',
 							},
 						})
+
 						return [ entries, options ]
+					}
+
+					if (level < basePathLevel && !options.hasBackLink)
+					{
+						// Add link to go back to lower level group
+
+						// Get index or first entry
+						const indexOrFirstEntry = (
+							getIndexEntry(entry.entries as any[]) ||
+							filteredEntries.find((subEntry) => subEntry.type === 'link') ||
+							null
+						)
+
+						if (indexOrFirstEntry)
+						{
+							// Add found link entry as go back link
+							entries.push({
+								...indexOrFirstEntry,
+								label: '← ' + indexOrFirstEntry.label,
+								attrs: {
+									class: 'large',
+								},
+							})
+							options.hasBackLink = true
+						}
+						else if (level <= 1)
+						{
+							// Add home link as go back link
+							entries.push({
+								type: 'link',
+								label: '← Home',
+								href: '/',
+								attrs: {
+									class: 'large',
+								},
+							})
+							options.hasBackLink = true
+						}
 					}
 
 					if (filteredEntries.length === 1)
 					{
-						// Group has only one entry
-
-						if (level < basePathLevels - 1 || level > basePathLevels)
+						if (level < basePathLevel - 1 || level > basePathLevel)
 						{
-							// Replace group with entry
-							entries.push({
-								...filteredEntries[0],
-								label: (
-									filteredEntries[0].attrs?.slash
-										? filteredEntries[0].label
-										: entry.label + ' / ' + filteredEntries[0].label
-								),
-								attrs: {
-									...filteredEntries[0].attrs,
-									...(filteredEntries[0].type === 'link' ? { class: 'large' } : {}),
-									slash: true,
-								},
-							})
+							// Replace group with entries
+							entries.push(...filteredEntries)
 
 							return [ entries, options ]
 						}
-						else if (level === basePathLevels - 1)
+						else if (level === basePathLevel - 1)
 						{
-							// Get index or first entry
-							const indexOrFirstEntry = (
-								getIndexEntry(entry.entries as any[]) ||
-								filteredEntries.find((subEntry) => subEntry.type === 'link') ||
-								null
-							)
-
-							if (indexOrFirstEntry)
-							{
-								// Add link to go back to group
-								entries.push({
-									...indexOrFirstEntry,
-									label: '← ' + indexOrFirstEntry.label,
-									attrs: {
-										class: 'large',
-									},
-								})
-							}
-							else
-							{
-								// Add link to go back to group
-								entries.push({
-									type: 'link',
-									label: '← xxx',
-									attrs: {
-										class: 'large',
-									},
-								})
-							}
-
 							// Replace group with entry
 							entries.push({
 								...filteredEntries[0],
