@@ -47,21 +47,25 @@ function getIndexEntry<
 
 }
 
-function filterSidebar(inputEntries: any[], basePath: string, level: number = 1): any[]
+type SidebarReducedEntries = [ any[], { hasBackLink: boolean } ]
+
+function filterSidebar(inputEntries: any[], basePath: string, level: number = 1): SidebarReducedEntries
 {
 	// Recursively applies to list of entries
 
 	const basePathLevels = basePath.split('/').length - 1
-	const newEntries = inputEntries
-		.reduce(
-			(entries, entry) =>
+	const reducedEntries = inputEntries
+		.reduce<SidebarReducedEntries>(
+			(previous, entry) =>
 			{
+				const [ entries, options ] = previous
+
 				if (entry.type === 'link')
 				{
 					if (entry.href.startsWith(basePath))
 					{
 						entries.push(entry)
-						return entries
+						return [ entries, options ]
 					}
 
 					if (level <= 1)
@@ -69,7 +73,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						if (entry.href.startsWith('http'))
 						{
 							entries.push(entry)
-							return entries
+							return [ entries, options ]
 						}
 
 						if (entry.href === '/' && basePathLevels <= 1)
@@ -79,21 +83,21 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 								...entry,
 								label: '← ' + entry.label,
 							})
-							return entries
+							return [ entries, options ]
 						}
 					}
 
-					return entries
+					return [ entries, options ]
 				}
 
 				if (entry.type == 'group')
 				{
-					const filteredEntries = filterSidebar(entry.entries, basePath, level + 1)
+					const [ filteredEntries, _ ] = filterSidebar(entry.entries, basePath, level + 1)
 
 					if (filteredEntries.length <= 0)
 					{
 						// Skip empty group
-						return entries
+						return [ entries, options ]
 					}
 
 					if (level > basePathLevels && level >= 2)
@@ -112,7 +116,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 								class: 'large',
 							},
 						})
-						return entries
+						return [ entries, options ]
 					}
 
 					if (filteredEntries.length === 1)
@@ -136,7 +140,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 								},
 							})
 
-							return entries
+							return [ entries, options ]
 						}
 						else if (level === basePathLevels - 1)
 						{
@@ -185,7 +189,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 								},
 							})
 
-							return entries
+							return [ entries, options ]
 						}
 					}
 
@@ -193,7 +197,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						...entry,
 						entries: filteredEntries,
 					})
-					return entries
+					return [ entries, options ]
 				}
 
 				// Unknown entry type
@@ -201,15 +205,15 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 					...entry,
 					label: `?_${entry.label}`,
 				})
-				return entries
+				return [ entries, options ]
 			},
-			[],
+			[ [], { hasBackLink: false } ],
 		)
 
-	return newEntries
+	return reducedEntries
 }
 
-Astro.props.sidebar = filterSidebar(Astro.props.sidebar, basePath)
+Astro.props.sidebar = filterSidebar(Astro.props.sidebar, basePath)[0]
 ---
 
 <div class="sidebar-wrapper">
