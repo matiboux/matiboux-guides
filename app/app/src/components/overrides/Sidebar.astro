@@ -85,11 +85,35 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						}
 						else if (level === basePathLevels - 1)
 						{
+							// Get base path for level entries
+							const levelBasePath = (entry.entries as any[])
+								.filter((subEntry) => subEntry.type === 'link')
+								.map((subEntry) => subEntry.href)
+								.reduce<string | undefined>(
+									(basePath, href) =>
+									{
+										if (!basePath)
+										{
+											return href
+										}
+
+										const splitBasePath = basePath.split('/')
+										const splitHref = href.split('/')
+										return splitBasePath
+											.filter((part, index) => part === splitHref[index])
+											.join('/')
+									},
+									undefined,
+								) as string
+
+							// Get index or first entry
+							const indexOrFirstEntry = (entry.entries as any[])
+								.find((subEntry) => subEntry.href === levelBasePath) || filteredEntries[0]
+
 							// Add link to go back to group
 							entries.push({
-								type: 'link',
-								label: '← ' + entry.label,
-								href: null, // TODO
+								...indexOrFirstEntry,
+								label: '← ' + indexOrFirstEntry.label,
 								attrs: {
 									class: 'large',
 								},
