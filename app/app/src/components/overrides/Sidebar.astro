@@ -116,6 +116,8 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						return [ entries, options ]
 					}
 
+					const countGroups = filteredEntries.filter((entry) => entry.type === 'group').length
+
 					if (level < basePathLevel && !options.hasBackLink)
 					{
 						// Add link to go back to lower level group
@@ -123,7 +125,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						// Get index or first entry
 						const indexOrFirstEntry = (
 							getIndexEntry(entry.entries as any[]) ||
-							filteredEntries.find((subEntry) => subEntry.type === 'link') ||
+							(entry.entries as any[]).find((subEntry) => subEntry.type === 'link') ||
 							null
 						)
 
@@ -154,7 +156,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						}
 					}
 
-					if (filteredEntries.length === 1)
+					if (filteredEntries.length === 1 || (filteredEntries.length === countGroups + 1))
 					{
 						if (level < basePathLevel - 1 || level > basePathLevel)
 						{
