@@ -66,18 +66,16 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 
 					if (entry.href.startsWith(basePath))
 					{
+						// Keep same or higher level links
 						entries.push(entry)
 						return [ entries, options ]
 					}
 
-					if (level <= 1)
+					if (entry.href.startsWith('http'))
 					{
-						if (entry.href.startsWith('http'))
-						{
-							// Keep external link
-							entries.push(entry)
-							return [ entries, options ]
-						}
+						// Keep external link
+						entries.push(entry)
+						return [ entries, options ]
 					}
 
 					return [ entries, options ]
