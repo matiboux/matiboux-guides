@@ -129,8 +129,6 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 								null
 							)
 
-							console.log(indexOrFirstEntry)
-
 							if (indexOrFirstEntry)
 							{
 								// Add found link entry as go back link
@@ -160,7 +158,6 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						}
 					}
 
-					console.log('l', filteredEntries.length, countGroups)
 					if (filteredEntries.length === 1 || filteredEntries.length === countGroups + 1)
 					{
 						if (level < basePathLevel - 2 || level >= basePathLevel)
