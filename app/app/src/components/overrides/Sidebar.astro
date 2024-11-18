@@ -92,6 +92,24 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						return entries
 					}
 
+					if (level >= basePathLevels && level >= 2)
+					{
+						// Fold higher level groups
+						// Start from level 2
+
+						// Get index or first entry
+						const indexOrFirstEntry = getIndexEntry(entry.entries as any[]) || (entry.entries as any[])[0]
+
+						// Replace group with entry
+						entries.push({
+							...indexOrFirstEntry,
+							attrs: {
+								class: 'large',
+							},
+						})
+						return entries
+					}
+
 					if (filteredEntries.length === 1)
 					{
 						// Group has only one entry
