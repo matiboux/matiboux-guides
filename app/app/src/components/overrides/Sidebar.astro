@@ -83,10 +83,6 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						}
 					}
 
-					// entries.push({
-					// 		...entry,
-					// 		label: `x_${entry.label}`,
-					// 	})
 					return entries
 				}
 
@@ -100,7 +96,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						return entries
 					}
 
-					if (level >= basePathLevels && level >= 2)
+					if (level > basePathLevels && level >= 2)
 					{
 						// Fold higher level groups
 						// Start from level 2
