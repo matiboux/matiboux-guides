@@ -118,33 +118,10 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 
 					const countGroups = filteredEntries.filter((entry) => entry.type === 'group').length
 
-					console.log(level, basePathLevel)
-					if (level < basePathLevel - 1 && !options.hasBackLink)
+					if (level < basePathLevel && !options.hasBackLink)
 					{
-						// Add link to go back to lower level group
-
-						// Get index or first entry
-						const indexOrFirstEntry = (
-							getIndexEntry(entry.entries as any[]) ||
-							(entry.entries as any[]).find((subEntry) => subEntry.type === 'link') ||
-							null
-						)
-
-						console.log(indexOrFirstEntry)
-
-						if (indexOrFirstEntry)
-						{
-							// Add found link entry as go back link
-							entries.push({
-								...indexOrFirstEntry,
-								label: '← ' + indexOrFirstEntry.label,
-								attrs: {
-									class: 'large',
-								},
-							})
-							options.hasBackLink = true
-						}
-						else if (level <= 1)
+						console.log(level, basePathLevel)
+						if (level <= 1)
 						{
 							// Add home link as go back link
 							entries.push({
@@ -157,9 +134,36 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 							})
 							options.hasBackLink = true
 						}
+						else if (level < basePathLevel - 1)
+						{
+							// Add link to go back to lower level group
+
+							// Get index or first entry
+							const indexOrFirstEntry = (
+								getIndexEntry(entry.entries as any[]) ||
+								(entry.entries as any[]).find((subEntry) => subEntry.type === 'link') ||
+								null
+							)
+
+							console.log(indexOrFirstEntry)
+
+							if (indexOrFirstEntry)
+							{
+								// Add found link entry as go back link
+								entries.push({
+									...indexOrFirstEntry,
+									label: '← ' + indexOrFirstEntry.label,
+									attrs: {
+										class: 'large',
+									},
+								})
+								options.hasBackLink = true
+							}
+						}
 					}
 
-					if (filteredEntries.length === 1 || (filteredEntries.length === countGroups + 1))
+					console.log('l', filteredEntries.length, countGroups)
+					if (filteredEntries.length === 1 || filteredEntries.length === countGroups + 1)
 					{
 						if (level < basePathLevel - 2 || level >= basePathLevel)
 						{
