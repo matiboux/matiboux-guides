@@ -107,6 +107,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						// Replace group with entry
 						entries.push({
 							...indexOrFirstEntry,
+							label: `${indexOrFirstEntry.label} : ${level} >= ${basePathLevels}`,
 							attrs: {
 								class: 'large',
 							},
@@ -140,16 +141,34 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						else if (level === basePathLevels - 1)
 						{
 							// Get index or first entry
-							const indexOrFirstEntry = getIndexEntry(entry.entries as any[]) || filteredEntries[0]
+							const indexOrFirstEntry = (
+								getIndexEntry(entry.entries as any[]) ||
+								filteredEntries.find((subEntry) => subEntry.type === 'link') ||
+								null
+							)
 
-							// Add link to go back to group
-							entries.push({
-								...indexOrFirstEntry,
-								label: '← ' + indexOrFirstEntry.label,
-								attrs: {
-									class: 'large',
-								},
-							})
+							if (indexOrFirstEntry)
+							{
+								// Add link to go back to group
+								entries.push({
+									...indexOrFirstEntry,
+									label: '← ' + indexOrFirstEntry.label,
+									attrs: {
+										class: 'large',
+									},
+								})
+							}
+							else
+							{
+								// Add link to go back to group
+								entries.push({
+									type: 'link',
+									label: '← xxx',
+									attrs: {
+										class: 'large',
+									},
+								})
+							}
 
 							// Replace group with entry
 							entries.push({
