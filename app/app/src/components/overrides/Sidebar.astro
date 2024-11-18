@@ -7,10 +7,11 @@ import Copyright from '~/components/Copyright.astro'
 
 const basePath = path.dirname(`/${Astro.props.id}`)
 
-function filterSidebar(inputEntries: any[], basePath: string, level: number = 0): any[]
+function filterSidebar(inputEntries: any[], basePath: string, level: number = 1): any[]
 {
 	// Recursively applies to list of entries
 
+	const basePathLevels = basePath.split('/').length - 1
 	const newEntries = inputEntries
 		.reduce(
 			(entries, entry) =>
@@ -23,7 +24,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 0)
 						return entries
 					}
 
-					if (level <= 0)
+					if (level <= 1)
 					{
 						if (entry.href.startsWith('http'))
 						{
@@ -31,7 +32,6 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 0)
 							return entries
 						}
 
-						const basePathLevels = basePath.split('/').length - 1
 						if (entry.href === '/' && basePathLevels <= 1)
 						{
 							// Keep home link
@@ -64,21 +64,54 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 0)
 					{
 						// Group has only one entry
 
-						// Replace group with entry
-						entries.push({
-							...filteredEntries[0],
-							label: (
-								filteredEntries[0].attrs?.slash
-									? filteredEntries[0].label
-									: entry.label + ' / ' + filteredEntries[0].label
-							),
-							attrs: {
-								...filteredEntries[0].attrs,
-								...(filteredEntries[0].type === 'link' ? { class: 'large' } : {}),
-								slash: true,
-							},
-						})
-						return entries
+						if (level < basePathLevels - 1 || level > basePathLevels)
+						{
+							// Replace group with entry
+							entries.push({
+								...filteredEntries[0],
+								label: (
+									filteredEntries[0].attrs?.slash
+										? filteredEntries[0].label
+										: entry.label + ' / ' + filteredEntries[0].label
+								),
+								attrs: {
+									...filteredEntries[0].attrs,
+									...(filteredEntries[0].type === 'link' ? { class: 'large' } : {}),
+									slash: true,
+								},
+							})
+
+							return entries
+						}
+						else if (level === basePathLevels - 1)
+						{
+							// Add link to go back to group
+							entries.push({
+								type: 'link',
+								label: '← ' + entry.label,
+								href: null, // TODO
+								attrs: {
+									class: 'large',
+								},
+							})
+
+							// Replace group with entry
+							entries.push({
+								...filteredEntries[0],
+								label: (
+									filteredEntries[0].attrs?.slash
+										? filteredEntries[0].label
+										: entry.label + ' / ' + filteredEntries[0].label
+								),
+								attrs: {
+									...filteredEntries[0].attrs,
+									...(filteredEntries[0].type === 'link' ? { class: 'large' } : {}),
+									slash: true,
+								},
+							})
+
+							return entries
+						}
 					}
 
 					entries.push({
