@@ -118,21 +118,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 
 					if (level < basePathLevel && !options.hasBackLink)
 					{
-						console.log(level, basePathLevel)
-						if (level <= 1)
-						{
-							// Add home link as go back link
-							entries.push({
-								type: 'link',
-								label: '← Home',
-								href: '/',
-								attrs: {
-									class: 'large',
-								},
-							})
-							options.hasBackLink = true
-						}
-						else if (level < basePathLevel - 1)
+						if (level < basePathLevel - 1)
 						{
 							// Add link to go back to lower level group
 
@@ -157,6 +143,20 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 								})
 								options.hasBackLink = true
 							}
+						}
+
+						if (level <= 1 && !options.hasBackLink)
+						{
+							// Add home link as go back link
+							entries.push({
+								type: 'link',
+								label: '← Home',
+								href: '/',
+								attrs: {
+									class: 'large',
+								},
+							})
+							options.hasBackLink = true
 						}
 					}
 
