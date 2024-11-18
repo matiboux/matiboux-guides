@@ -13,9 +13,17 @@ function getIndexEntry<
 	entries: T[],
 ): T | undefined
 {
-	// Get base path for level entries
+	// Filter out non-link entries
+	entries = entries.filter((entry) => entry.type === 'link')
+
+	if (entries.length <= 0)
+	{
+		// No link entry
+		return undefined
+	}
+
+	// Get base path for level link entries
 	const levelBasePath = entries
-		.filter((entry) => entry.type === 'link')
 		.map((entry) => entry.href)
 		.reduce<string | undefined>(
 			(basePath, href) =>
