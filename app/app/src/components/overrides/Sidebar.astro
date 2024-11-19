@@ -1,7 +1,214 @@
 ---
+import path from 'node:path'
+
 import StarlightSidebar from '@astrojs/starlight/components/Sidebar.astro'
 
 import Copyright from '~/components/Copyright.astro'
+
+const basePath = path.dirname(`/${Astro.props.id}`)
+
+function getIndexEntry<
+	T extends { type: 'link', href: string }
+>(
+	entries: T[],
+): T | undefined
+{
+	// Filter out non-link entries
+	entries = entries.filter((entry) => entry.type === 'link')
+
+	if (entries.length <= 0)
+	{
+		// No link entry
+		return undefined
+	}
+
+	// Get base path for level link entries
+	const levelBasePath = entries
+		.map((entry) => entry.href)
+		.reduce<string | undefined>(
+			(basePath, href) =>
+			{
+				if (!basePath)
+				{
+					return href
+				}
+
+				const splitBasePath = basePath.split('/')
+				const splitHref = href.split('/')
+				return splitBasePath
+					.filter((part, index) => part === splitHref[index])
+					.join('/')
+			},
+			undefined,
+		) as string
+
+	// Get index or first entry
+	return entries.find((entry) => entry.href === levelBasePath)
+
+}
+
+type SidebarReducedEntries = [ any[], { hasBackLink: boolean } ]
+
+function filterSidebar(inputEntries: any[], basePath: string, level: number = 1): SidebarReducedEntries
+{
+	// Recursively applies to list of entries
+
+	const basePathLevel = basePath === '/' ? 1 : basePath.split('/').length
+	const reducedEntries = inputEntries
+		.reduce<SidebarReducedEntries>(
+			(previous, entry) =>
+			{
+				const [ entries, options ] = previous
+
+				if (entry.type === 'link')
+				{
+					// Handle link entry
+
+					if (entry.href.startsWith(basePath))
+					{
+						// Keep same or higher level links
+						entries.push(entry)
+						return [ entries, options ]
+					}
+
+					if (entry.href.startsWith('http'))
+					{
+						// Keep external link
+						entries.push(entry)
+						return [ entries, options ]
+					}
+
+					return [ entries, options ]
+				}
+
+				if (entry.type === 'group')
+				{
+					// Handle group entry
+
+					const [ filteredEntries, subOptions ] = filterSidebar(entry.entries, basePath, level + 1)
+					options.hasBackLink = options.hasBackLink || subOptions.hasBackLink
+
+					if (filteredEntries.length <= 0)
+					{
+						// Skip empty group
+						return [ entries, options ]
+					}
+
+					if (level >= basePathLevel && level >= 2)
+					{
+						// Fold higher level groups
+						// Start from level 2
+
+						// Get index or first entry
+						const indexOrFirstEntry = getIndexEntry(entry.entries as any[]) || (entry.entries as any[])[0]
+
+						// Replace group with entry
+						entries.push({
+							...indexOrFirstEntry,
+							label: `${indexOrFirstEntry.label} →`,
+							attrs: {
+								class: 'large',
+							},
+						})
+
+						return [ entries, options ]
+					}
+
+					const countGroups = filteredEntries.filter((entry) => entry.type === 'group').length
+
+					if (level < basePathLevel && !options.hasBackLink)
+					{
+						if (level < basePathLevel - 1)
+						{
+							// Add link to go back to lower level group
+
+							// Get index or first entry
+							const indexOrFirstEntry = (
+								getIndexEntry(entry.entries as any[]) ||
+								(entry.entries as any[]).find((subEntry) => subEntry.type === 'link') ||
+								null
+							)
+
+							if (indexOrFirstEntry)
+							{
+								// Add found link entry as go back link
+								entries.push({
+									...indexOrFirstEntry,
+									label: '← ' + indexOrFirstEntry.label,
+									attrs: {
+										class: 'large',
+									},
+								})
+								options.hasBackLink = true
+							}
+						}
+
+						if (level <= 1 && !options.hasBackLink)
+						{
+							// Add home link as go back link
+							entries.push({
+								type: 'link',
+								label: '← Home',
+								href: '/',
+								attrs: {
+									class: 'large',
+								},
+							})
+							options.hasBackLink = true
+						}
+					}
+
+					if (filteredEntries.length === 1 || filteredEntries.length === countGroups + 1)
+					{
+						if (level < basePathLevel - 2 || level >= basePathLevel)
+						{
+							// Replace group with entries
+							entries.push(...filteredEntries)
+
+							return [ entries, options ]
+						}
+						else if (level === basePathLevel - 2)
+						{
+							// Replace group with entry
+							entries.push({
+								...filteredEntries[0],
+								label: (
+									filteredEntries[0].attrs?.slash
+										? filteredEntries[0].label
+										: entry.label + ' / ' + filteredEntries[0].label
+								),
+								attrs: {
+									...filteredEntries[0].attrs,
+									...(filteredEntries[0].type === 'link' ? { class: 'large' } : {}),
+									slash: true,
+								},
+							})
+
+							return [ entries, options ]
+						}
+					}
+
+					entries.push({
+						...entry,
+						entries: filteredEntries,
+					})
+					return [ entries, options ]
+				}
+
+				// Unknown entry type
+				entries.push({
+					...entry,
+					label: `?_${entry.label}`,
+				})
+				return [ entries, options ]
+			},
+			[ [], { hasBackLink: false } ],
+		)
+
+	return reducedEntries
+}
+
+Astro.props.sidebar = filterSidebar(Astro.props.sidebar, basePath)[0]
 ---
 
 <div class="sidebar-wrapper">
