@@ -58,6 +58,9 @@ export default defineConfig({
 							autogenerate: { directory: 'dev/github', collapsed: true },
 						},
 						{
+							slug: 'dev',
+						},
+						{
 							slug: 'dev/tools',
 						},
 					],

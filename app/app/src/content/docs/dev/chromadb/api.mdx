@@ -164,7 +164,7 @@ DELETE `/api/v1/collections/{COLLECTION_NAME}` route to delete a collection.
 		-d '{
 			"include": [ "embeddings", "documents", "metadatas" ]
 		}' \
-		{'>'} collection.json
+		> collection.json
 
 	curl -X POST -v \
 		{SERVER_URL}/api/v1/collections/{TARGET_COLLECTION_ID}/add \
