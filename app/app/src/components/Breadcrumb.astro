@@ -26,14 +26,14 @@ const parts: any[] = Astro.props.entry.slug
 	: []
 
 const title = Astro.props.entry.data.title
-if (parts.length > 1 && title)
+if (parts.length > 0 && title)
 {
 	parts[parts.length - 1].label = title
 	parts[parts.length - 1].link = null
 }
 ---
 
-{parts.length > 1 &&
+{parts.length > 0 &&
 	<div class="sl-breadcrumb">
 		<ul>
 			<li>
