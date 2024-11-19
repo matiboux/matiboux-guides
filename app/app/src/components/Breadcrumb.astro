@@ -4,14 +4,14 @@ import { getEntry } from 'astro:content'
 import { slugLabels } from '~/config/slugLabels'
 
 const collection = Astro.props.entry.collection
-const parts = Astro.props.entry.slug
+const parts: any[] = Astro.props.entry.slug
 	? await Astro.props.entry.slug.split('/').reduce(
 		async (accPromise, part) => {
 			const acc = await accPromise
 			const partSlug = acc.length >= 1 ? `${acc[acc.length - 1].slug}/${part}` : part
 			const partEntry = await getEntry(collection, partSlug)
 			const partLabel = partEntry ? partEntry.data.title : (slugLabels[partSlug] ?? part)
-			const partLink = partEntry ? `/${partEntry.slug}` : null
+			const partLink = partEntry ? `/${partEntry.slug}/` : null
 			return [
 				...acc,
 				{
