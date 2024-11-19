@@ -680,7 +680,7 @@ you can join the Windows Insider program from the "Advanced options" in the "Win
 
 ### Install WSL
 
-See the dedicated guide on how to [install Windows Subsystem for Linux (WSL)](</system/wsl/install>).
+See the dedicated guide on how to [install Windows Subsystem for Linux (WSL)](<../../wsl/install/>).
 
 
 ## Upgrade to Windows 11
