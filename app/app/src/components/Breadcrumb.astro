@@ -3,14 +3,16 @@ import { getEntry } from 'astro:content'
 
 import { slugLabels } from '~/config/slugLabels'
 
-const collection = Astro.props.entry.collection
-const parts: any[] = Astro.props.entry.slug
-	? await Astro.props.entry.slug.split('/').reduce(
+const entry: any = Astro.props.entry
+
+const collection = entry.collection
+const parts: any[] = (entry.slug as string)
+	? await (entry.slug as string).split('/').reduce<Promise<any[]>>(
 		async (accPromise, part) => {
 			const acc = await accPromise
 			const partSlug = acc.length >= 1 ? `${acc[acc.length - 1].slug}/${part}` : part
-			const partEntry = await getEntry(collection, partSlug)
-			const partLabel = partEntry ? partEntry.data.title : (slugLabels[partSlug] ?? part)
+			const partEntry: any = await getEntry(collection, partSlug)
+			const partLabel = partEntry ? partEntry.data.title : (slugLabels[partSlug as keyof typeof slugLabels] ?? part)
 			const partLink = partEntry ? `/${partEntry.slug}/` : null
 			return [
 				...acc,
@@ -25,15 +27,15 @@ const parts: any[] = Astro.props.entry.slug
 	)
 	: []
 
-const title = Astro.props.entry.data.title
-if (parts.length > 1 && title)
+if (parts.length > 0 && entry.data.title)
 {
-	parts[parts.length - 1].label = title
+	// Use title of current page & remove link
+	parts[parts.length - 1].label = entry.data.title
 	parts[parts.length - 1].link = null
 }
 ---
 
-{parts.length > 1 &&
+{parts.length > 0 &&
 	<div class="sl-breadcrumb">
 		<ul>
 			<li>
