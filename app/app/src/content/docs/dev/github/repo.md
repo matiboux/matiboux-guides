@@ -4,7 +4,7 @@ title: GitHub repositories
 
 ## Create repository
 
-_TODO_
+Open [github.com/new](https://github.com/new) to create a new repository.
 
 
 ## Configure repository
@@ -50,7 +50,7 @@ Under "Pull Requests":
   - Use squash commits to merge with secondary branches: e.g. from `feat/*` into `dev`.
   - Combines all feature branch commits into a single commit in the main history.
   - 🔧 Set default commit message to `Pull request title`.
-- ❎ Disable `Allow rebase merging`.
+- ❌ Disable `Allow rebase merging`.
 
 <span></span>
 
@@ -59,13 +59,15 @@ Under "Pull Requests":
 - ✅ Enable `Automatically delete head branches`
 
 Under "Archives":
-- ❎ Disable `Include Git LFS objects in archives`
+- ❌ Disable `Include Git LFS objects in archives` unless you have a specific need for it, as it would incur additional costs.
 
 Under "Pushes":
 - ✅ Enable `Limit how many branches and tags can be updated in a single push`
   - 🔧 Default is up to `5` branches and tags, `2` may be sufficient.
 
 
+<!--
 ## Use repository
 
-_TODO_
+🚧 _Work in progress._
+-->
