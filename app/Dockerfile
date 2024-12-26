@@ -76,7 +76,7 @@ FROM app_runtime_base AS app_prod_build
 ENV APP_ENV=prod
 ENV NODE_ENV=production
 
-# Install git, used for fetch history in build
+# Install git, used to fetch history during build
 RUN --mount=type=cache,target=/var/cache/apt \
 	apt-get update && \
 	apt-get install -y git
@@ -88,7 +88,12 @@ ARG GITHUB_SHA=""
 ENV GITHUB_SHA=${GITHUB_SHA}
 
 # Build application
-RUN npm run build-only
+ARG BUILD_CHECK=true
+RUN if [ "${BUILD_CHECK}" = "true" ]; then \
+		npm run build; \
+	else \
+		npm run build-only; \
+	fi
 
 
 # --
@@ -96,6 +101,7 @@ RUN npm run build-only
 
 FROM nginx_upstream AS app_prod
 
+# Set runtime environment
 ENV APP_ENV=prod
 ENV NODE_ENV=production
 
