@@ -5,7 +5,8 @@ import StarlightSidebar from '@astrojs/starlight/components/Sidebar.astro'
 
 import Copyright from '~/components/Copyright.astro'
 
-const basePath = path.dirname(`/${Astro.props.id}`)
+const fullPath = `/${Astro.props.id}`
+const basePath = path.dirname(fullPath)
 
 function getIndexEntry<
 	T extends { type: 'link', href: string }
@@ -94,7 +95,9 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 						return [ entries, options ]
 					}
 
-					if (level >= basePathLevel && level >= 2)
+					const containsCurrentPath = filteredEntries.some((entry) => entry.href === `${fullPath}/`)
+
+					if (!containsCurrentPath && level >= basePathLevel && level >= 2)
 					{
 						// Fold higher level groups
 						// Start from level 2
