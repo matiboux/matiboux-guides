@@ -41,7 +41,7 @@ dist/
 .vite/
 
 # Application environment files
-**/.env*
+*/**/.env*
 
 # -- Specific to dockerignore:
 
