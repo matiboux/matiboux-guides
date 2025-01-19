@@ -68,3 +68,5 @@ Properties in the "Deploy" group are ordered like this:
 8. Docker checks the running container's health regularly (`healthcheck`).
 9. Docker exposes ports to other services and the host (`expose`, `ports`).
 10. Docker Watch allows developers to make changes in the running container (`develop`).
+
+As for paths like in `build` and `volumes`, I would recommend using relative paths prefixed with `./` to make it clear that paths are relative to the compose file or the `context` directory.
