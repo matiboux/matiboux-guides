@@ -26,6 +26,7 @@ service:
   networks: []
   network_mode: ""
   dns: []
+  extra_hosts: []
   environment:
     ENV_KEY: value
   user: user
@@ -59,7 +60,7 @@ Properties in the "Deploy" group are ordered like this:
 1. Docker checks the service dependencies (`depends_on`).
 2. Docker configures how the service should be managed (`restart`).
 3. Docker prepares the host platform (`platform`, `networks`, `network_mode`).
-4. Docker sets up the container environment (`dns`, `environment`, `user`, `working_dir`).
+4. Docker sets up the container environment (`dns`, `extra_hosts`, `environment`, `user`, `working_dir`).
 5. Docker sets the start commands (`entrypoint`, `command`).
 6. Docker sets the terminal behavior for when running (`tty`, `stdin_open`).
 7. Docker mounts external dependencies in the container on start (`volumes`).
