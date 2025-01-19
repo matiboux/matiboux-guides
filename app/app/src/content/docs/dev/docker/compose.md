@@ -38,6 +38,7 @@ service:
   expose: []
   ports:
     - "8080:8080" # HTTP
+  develop: []
 
 ```
 
@@ -63,3 +64,4 @@ Properties in the "Deploy" group are ordered like this:
 6. Docker sets the terminal behavior for when running (`tty`, `stdin_open`).
 7. Docker mounts external dependencies in the container on start (`volumes`).
 8. Docker exposes ports to other services and the host (`expose`, `ports`).
+9. Docker Watch allows developers to make changes in the running container (`develop`).
