@@ -36,6 +36,7 @@ service:
   tty: false
   stdin_open: false
   volumes: []
+  healthcheck: []
   expose: []
   ports:
     - "8080:8080" # HTTP
@@ -43,14 +44,14 @@ service:
 
 ```
 
-As a general guideline, my thinking is to group the properties by their high-level use ("Build" for building the image, "Deploy" for running the container) and order them by relevance and chronological order of execution.
+As a general guideline, my thinking is to group the properties by their high-level use ("Build" for building the image, "Deploy" for running the container) and order them by scope, relevance and chronological order of execution.
 
 - The "Build" group contains properties used in `docker compose build`.
 - The "Deploy" group contains properties used in `docker compose up` (excluding the build steps).
 
 An additional group "Extend" is used for the Compose-specific property to define service configuration inheritance.
 
-The following properties are ordered by their relevance and chronological order of execution. Below is the reasoning behind the order of properties, but they are not representative of what Docker really does under the hood.
+The following properties are ordered by their scope, relevance and chronological order of execution. Below is the reasoning behind the order of properties, but they are not representative of what Docker really does under the hood.
 
 Properties in the "Build" group are ordered like this:
 1. Docker checks if the image exists before building (`image`).
@@ -64,5 +65,6 @@ Properties in the "Deploy" group are ordered like this:
 5. Docker sets the start commands (`entrypoint`, `command`).
 6. Docker sets the terminal behavior for when running (`tty`, `stdin_open`).
 7. Docker mounts external dependencies in the container on start (`volumes`).
-8. Docker exposes ports to other services and the host (`expose`, `ports`).
-9. Docker Watch allows developers to make changes in the running container (`develop`).
+8. Docker checks the running container's health regularly (`healthcheck`).
+9. Docker exposes ports to other services and the host (`expose`, `ports`).
+10. Docker Watch allows developers to make changes in the running container (`develop`).
