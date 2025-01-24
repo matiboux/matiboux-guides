@@ -23,6 +23,7 @@ service:
   depends_on: []
   restart: unless-stopped
   platform: []
+  deploy: {}
   networks: []
   network_mode: ""
   dns: []
@@ -60,7 +61,7 @@ Properties in the "Build" group are ordered like this:
 Properties in the "Deploy" group are ordered like this:
 1. Docker checks the service dependencies (`depends_on`).
 2. Docker configures how the service should be managed (`restart`).
-3. Docker prepares the host platform (`platform`, `networks`, `network_mode`).
+3. Docker prepares the host platform (`platform`, `deploy`, `networks`, `network_mode`).
 4. Docker sets up the container environment (`dns`, `extra_hosts`, `user`, `working_dir`, `environment`).
 5. Docker sets the start commands (`entrypoint`, `command`).
 6. Docker sets the terminal behavior for when running (`tty`, `stdin_open`).
