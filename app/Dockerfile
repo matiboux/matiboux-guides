@@ -20,43 +20,74 @@ WORKDIR /app
 
 
 # --
-# Npm image
+# Build base image
 
-FROM app_base AS app_npm
+FROM app_base AS app_build_base
+
+# Install pnpm
+RUN --mount=type=cache,target=~/.npm \
+	npm install -g pnpm
+ENV PNPM_HOME='/pnpm'
+ENV PATH="$PNPM_HOME:$PATH"
+
+
+# --
+# Build dev image
+
+FROM app_build_base AS app_build_dev
+
+# Copy app build configuration
+COPY --link \
+	./app/package.json \
+	./app/pnpm-lock.yaml \
+	./
+
+# Install app development dependencies
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+	pnpm install --frozen-lockfile
+
+
+# --
+# Build prod image
+
+FROM app_build_base AS app_build_prod
+
+# Install app production dependencies
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+	pnpm install --prod --frozen-lockfile
+
+
+# --
+# CLI image
+
+FROM app_build_base AS app_cli
+
+# Configure pnpm
+RUN pnpm config -g set store-dir /pnpm/store
 
 # Mount source code as volume
 VOLUME /app
 
-# Run npm command
-COPY --link --chmod=755 ./docker/npm-entrypoint.sh /usr/local/bin/app-npm-entrypoint
-ENTRYPOINT [ "app-npm-entrypoint" ]
+# Run CLI command
+COPY --link --chmod=755 ./docker/cli-entrypoint.sh /usr/local/bin/app-cli-entrypoint
+ENTRYPOINT [ "app-cli-entrypoint" ]
 CMD [ "--help" ]
-
-
-# --
-# Runtime base image
-
-FROM app_base AS app_runtime_base
-
-# Set runtime environment
-ENV APP_ENV=dev
-ENV NODE_ENV=development
-
-# Install dev dependencies, required for build
-RUN --mount=type=bind,source=./app/package.json,target=./package.json \
-	--mount=type=bind,source=./app/package-lock.json,target=./package-lock.json \
-	--mount=type=bind,source=./app/tsconfig.json,target=./tsconfig.json \
-	--mount=type=cache,target=~/.npm \
-	npm clean-install --include=dev
-
-# Copy application source code
-COPY --link ./app .
 
 
 # --
 # Dev image
 
-FROM app_runtime_base AS app_dev
+FROM app_base AS app_dev
+
+# Set runtime environment
+ENV APP_ENV=dev
+ENV NODE_ENV=development
+
+# Copy app development dependencies
+COPY --link --from=app_build_dev /app/node_modules ./node_modules
+
+# Copy application source code
+COPY --link ./app .
 
 # Set exposed port
 ARG PORT=8080
@@ -70,16 +101,23 @@ CMD [ "sh", "-c", "npm run dev -- --host --port \"${PORT}\"" ]
 # --
 # Prod build image
 
-FROM app_runtime_base AS app_prod_build
+FROM app_base AS app_prod_build
 
 # Set runtime environment
 ENV APP_ENV=prod
 ENV NODE_ENV=production
 
 # Install git, used to fetch history during build
-RUN --mount=type=cache,target=/var/cache/apt \
+RUN --mount=type=cache,sharing=locked,target=/var/cache/apt \
+	--mount=type=cache,sharing=locked,target=/var/lib/apt \
 	apt-get update && \
 	apt-get install -y git
+
+# Copy app production dependencies
+COPY --link --from=app_build_prod /app/node_modules ./node_modules
+
+# Copy application source code
+COPY --link ./app .
 
 # Use application environment variables
 ARG GITHUB_REPOSITORY_URL=""
@@ -103,12 +141,11 @@ FROM nginx_upstream AS app_prod
 
 # Set runtime environment
 ENV APP_ENV=prod
-ENV NODE_ENV=production
 
 # Set app directory
 WORKDIR /usr/share/nginx/html
 
-# Copy built static website files
+# Copy app production build
 COPY --from=app_prod_build --link /app/dist .
 
 # Set exposed port
