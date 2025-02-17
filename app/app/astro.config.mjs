@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config'
 import svelte from '@astrojs/svelte'
 import starlight from '@astrojs/starlight'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
+	trailingSlash: 'always',
 	integrations: [
 		svelte(),
 		starlight({
@@ -98,9 +99,10 @@ export default defineConfig({
 				Footer: '~/components/overrides/Footer.astro',
 			},
 		}),
-		tailwind({
-			applyBaseStyles: false, // Disable default base styles
-		}),
 	],
-	trailingSlash: 'always',
+	vite: {
+		plugins: [
+			tailwindcss(),
+		],
+	},
 })
