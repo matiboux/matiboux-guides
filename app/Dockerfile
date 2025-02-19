@@ -33,8 +33,6 @@ FROM app_base AS app_build_base
 # Install pnpm
 RUN --mount=type=cache,target=~/.npm \
 	npm install -g pnpm
-ENV PNPM_HOME='/pnpm'
-ENV PATH="$PNPM_HOME:$PATH"
 
 
 # --
@@ -78,9 +76,6 @@ ARG UID
 
 # Use temporary directory as home
 ENV HOME=/tmp
-
-# Configure pnpm
-RUN pnpm config -g set store-dir /pnpm/store
 
 # Run as non-root user
 USER ${UID}:0
@@ -142,12 +137,6 @@ ARG UID
 # Set runtime environment
 ENV APP_ENV=prod
 ENV NODE_ENV=production
-
-# Install git, used to fetch history during build
-RUN --mount=type=cache,sharing=locked,target=/var/cache/apt \
-	--mount=type=cache,sharing=locked,target=/var/lib/apt \
-	apt-get update && \
-	apt-get install -y git
 
 # Copy app production dependencies
 COPY --link --from=app_build_prod --chown="${UID}:0" /app/node_modules ./node_modules
