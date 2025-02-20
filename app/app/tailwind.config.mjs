@@ -1,5 +1,4 @@
 import starlightPlugin from '@astrojs/starlight-tailwind'
-import { addDynamicIconSelectors } from '@iconify/tailwind'
 
 // Generated 'Ocean' color palettes
 // https://starlight.astro.build/guides/css-and-tailwind/#color-theme-editor
@@ -22,6 +21,5 @@ export default {
 	},
 	plugins: [
 		starlightPlugin(),
-		addDynamicIconSelectors(),
 	],
 }

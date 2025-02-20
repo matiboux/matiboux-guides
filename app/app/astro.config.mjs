@@ -87,7 +87,7 @@ export default defineConfig({
 				github: 'https://github.com/matiboux/matiboux-guides',
 			},
 			customCss: [
-				'./src/tailwind.css',
+				'./src/styles/global.css',
 			],
 			lastUpdated: true,
 			pagination: false,
