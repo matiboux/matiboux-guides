@@ -5,7 +5,7 @@ import StarlightSidebar from '@astrojs/starlight/components/Sidebar.astro'
 
 import Copyright from '~/components/Copyright.astro'
 
-const fullPath = `/${Astro.props.id}`
+const fullPath = `/${Astro.locals.starlightRoute.id}`
 const basePath = path.dirname(fullPath)
 
 function getIndexEntry<
@@ -86,7 +86,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 				{
 					// Handle group entry
 
-					const [ filteredEntries, subOptions ] = filterSidebar(entry.entries, basePath, level + 1)
+					const [ filteredEntries, subOptions ] = filterSidebar(entry.entries || [], basePath, level + 1)
 					options.hasBackLink = options.hasBackLink || subOptions.hasBackLink
 
 					if (filteredEntries.length <= 0)
@@ -211,7 +211,7 @@ function filterSidebar(inputEntries: any[], basePath: string, level: number = 1)
 	return reducedEntries
 }
 
-Astro.props.sidebar = filterSidebar(Astro.props.sidebar, basePath)[0]
+Astro.locals.starlightRoute.sidebar = filterSidebar(Astro.locals.starlightRoute.sidebar, basePath)[0]
 ---
 
 <div class="sidebar-wrapper">

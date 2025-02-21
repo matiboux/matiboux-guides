@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content'
 
 import { slugLabels } from '~/config/slugLabels'
 
-const entry: any = Astro.props.entry
+const entry = Astro.locals.starlightRoute.entry
 
 const collection = entry.collection
 const parts: any[] = (entry.slug as string)
