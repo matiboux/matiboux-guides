@@ -89,7 +89,7 @@ $: {
 </div>
 
 <style lang="scss">
-	.wrapper {
-		margin-top: 1rem;
-	}
+.wrapper {
+	margin-top: 1rem;
+}
 </style>

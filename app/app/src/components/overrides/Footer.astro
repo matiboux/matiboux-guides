@@ -13,58 +13,58 @@ import Copyright from '~/components/Copyright.astro'
 </div>
 
 <style lang="scss">
-	.footer-wrapper {
-		display: contents;
-	}
+.footer-wrapper {
+	display: contents;
+}
 
-	.copyright-notice {
-		font-size: var(--sl-text-sm);
+.copyright-notice {
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-4);
+
+	a {
 		color: var(--sl-color-gray-4);
+		text-decoration: underline;
 
-		a {
-			color: var(--sl-color-gray-4);
-			text-decoration: underline;
-
-			&:hover {
-				color: var(--sl-color-gray-3);
-				text-decoration: none;
-			}
-		}
-
-		ul {
-			align-items: center;
-			padding: 0;
-			margin: 0;
-			list-style: none;
-
-			li {
-				margin: 0;
-				padding: 0;
-			}
-		}
-
-		.icon {
-			vertical-align: -0.125em;
-		}
-
-		.license-icon {
-			display: inline;
-			width: 80px;
-			height: 15px;
-			margin-left: 0.125em;
-			margin-right: 0.125em;
-			vertical-align: -0.25em;
-		}
-
-		&:before {
-			// Horizontal line
-			content: '';
-			display: block;
-			background-color: var(--sl-color-gray-6);
-			width: calc(100% - 2rem);
-			height: 1px;
-			margin-bottom: 1rem;
-			margin-left: 1rem;
+		&:hover {
+			color: var(--sl-color-gray-3);
+			text-decoration: none;
 		}
 	}
+
+	ul {
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		li {
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	.icon {
+		vertical-align: -0.125em;
+	}
+
+	.license-icon {
+		display: inline;
+		width: 80px;
+		height: 15px;
+		margin-left: 0.125em;
+		margin-right: 0.125em;
+		vertical-align: -0.25em;
+	}
+
+	&:before {
+		// Horizontal line
+		content: '';
+		display: block;
+		background-color: var(--sl-color-gray-6);
+		width: calc(100% - 2rem);
+		height: 1px;
+		margin-bottom: 1rem;
+		margin-left: 1rem;
+	}
+}
 </style>
