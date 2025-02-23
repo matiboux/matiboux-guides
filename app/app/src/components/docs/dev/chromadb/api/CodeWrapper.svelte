@@ -88,8 +88,8 @@ $: {
 	<slot />
 </div>
 
-<style lang="scss">
-	.wrapper {
-		margin-top: 1rem;
-	}
+<style>
+.wrapper {
+	margin-top: 1rem;
+}
 </style>
