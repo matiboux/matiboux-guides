@@ -23,7 +23,7 @@ const id = Math.random().toString(36).substring(2)
 	/>
 </div>
 
-<style lang="scss">
+<style>
 .input-group {
 	width: 100%;
 	margin-top: 1rem;
