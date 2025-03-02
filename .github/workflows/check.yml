@@ -1,15 +1,27 @@
 name: Check CI
 
 on:
+
   # Run on pull requests to primary branches
   pull_request:
     branches:
+      # Production
       - main
+      # Development
       - dev
     paths:
+      # CI files
+      - '.github/workflows/check.yml'
+      - 'docker-compose.yml'
+      - 'docker-compose.cicd.yml'
+      - '.env'
+      # Application files
       - 'app/**'
 
-# Set GITHUB_TOKEN permissions
+  # Run on manual triggers
+  workflow_dispatch:
+
+# Set GITHUB_TOKEN permissions for the workflow
 permissions:
   contents: read
 
@@ -24,14 +36,70 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
 
-    - name: Build application files
-      run: docker compose -f docker-compose.yml -f docker-compose.cicd.yml build
-      env:
-        GITHUB_REPOSITORY_URL: https://github.com/${{ github.repository }}
-        GITHUB_SHA: ${{ github.sha }}
+      # Steps dependencies
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Execution steps
+
+      - name: Copy Git history in app source folder
+        run: |
+          # Copy app source code git history
+          # Initialize Git repository in app source code directory
+          (
+            cd app/app &&
+            rm -rf .git &&
+            git init -b main &&
+            git config receive.denyCurrentBranch ignore
+          )
+          # Get Git history of app source code
+          git subtree split --prefix=app/app -b app-history
+          # Push Git history to app source code directory
+          (
+            git remote add app ./app/app/.git &&
+            git push app app-history:main &&
+            git branch -D app-history &&
+            git remote remove app
+          )
+
+      - name: Pull dependencies
+        run: |
+          # docker compose pull --ignore-buildable
+          docker compose \
+            -f ./docker-compose.yml -f ./docker-compose.cicd.yml \
+            --env-file .env \
+            pull --ignore-buildable
+
+      - name: Build for production
+        env:
+          GITHUB_REPOSITORY_URL: https://github.com/${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          BUILD_CHECK: "true" # Run type checks
+        run: |
+          # docker compose build
+          export DOCKER_UID="$(id -u)"
+          docker compose \
+            -f ./docker-compose.yml -f ./docker-compose.cicd.yml \
+            --env-file .env \
+            build
+
+      - name: Copy application files
+        run: |
+          # docker compose up
+          export DOCKER_UID="$(id -u)"
+          docker compose \
+            -f ./docker-compose.yml -f ./docker-compose.cicd.yml \
+            --env-file .env \
+            up
+
+      - name: Check application files
+        run: |
+          # Check application files
+          [ -d ./app/dist ] && [ $(ls -1 ./app/dist | wc -l) -gt 0 ] \
+            && echo "Application files found" \
+            || ( echo "No application files found" && exit 1 )

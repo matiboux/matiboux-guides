@@ -40,67 +40,67 @@ const { shortText } = Astro.props
 	</ul>
 </div>
 
-<style lang="scss">
-	.copyright-notice {
-		font-size: var(--sl-text-sm);
-		color: var(--sl-color-gray-3);
+<style>
+.copyright-notice {
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-3);
 
-		a {
-			color: inherit;
-			text-decoration: underline;
+	a {
+		color: inherit;
+		text-decoration: underline;
 
-			&:hover {
-				color: var(--sl-color-gray-2);
-				text-decoration: none;
-			}
+		&:hover {
+			color: var(--sl-color-gray-2);
+			text-decoration: none;
 		}
+	}
 
-		ul {
-			align-items: center;
-			padding: 0;
+	ul {
+		align-items: center;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		li {
 			margin: 0;
-			list-style: none;
-
-			li {
-				margin: 0;
-				padding: 0;
-			}
-		}
-
-		.icon {
-			vertical-align: -0.125em;
-		}
-
-		.license-icon {
-			display: inline;
-			width: 80px;
-			height: 15px;
-			margin-left: 0.125em;
-			margin-right: 0.125em;
-			vertical-align: -0.25em;
-		}
-
-		&:before {
-			// Horizontal line
-			content: '';
-			display: block;
-			background-color: var(--sl-color-gray-5);
-			width: calc(100% - 2rem);
-			height: 1px;
-			margin-bottom: 1rem;
-			margin-left: 1rem;
+			padding: 0;
 		}
 	}
 
-	:global(:root[data-theme='light']) .copyright-notice {
-		color: var(--sl-color-gray-4);
-
-		a:hover {
-			color: var(--sl-color-gray-3);
-		}
-
-		&:before {
-			background-color: var(--sl-color-gray-6);
-		}
+	.icon {
+		vertical-align: -0.125em;
 	}
+
+	.license-icon {
+		display: inline;
+		width: 80px;
+		height: 15px;
+		margin-left: 0.125em;
+		margin-right: 0.125em;
+		vertical-align: -0.25em;
+	}
+
+	&:before {
+		/* Horizontal line */
+		content: '';
+		display: block;
+		background-color: var(--sl-color-gray-5);
+		width: calc(100% - 2rem);
+		height: 1px;
+		margin-bottom: 1rem;
+		margin-left: 1rem;
+	}
+}
+
+:global(:root[data-theme='light']) .copyright-notice {
+	color: var(--sl-color-gray-4);
+
+	a:hover {
+		color: var(--sl-color-gray-3);
+	}
+
+	&:before {
+		background-color: var(--sl-color-gray-6);
+	}
+}
 </style>
