@@ -73,10 +73,10 @@ Install [7-Zip](https://7-zip.org/) CLI:
 
 ```sh
 # Verify the version at https://7-zip.org/download.html
-7Z_DOWNLOAD_URL='https://7-zip.org/a/7z2409-linux-x64.tar.xz'
+SEVENZIP_DOWNLOAD_URL='https://7-zip.org/a/7z2409-linux-x64.tar.xz'
 rm -rf ./7ztmp && \
 mkdir -p ./7ztmp && \
-wget "$7Z_DOWNLOAD_URL" -O - | tar -xJf - -C ./7ztmp && \
+wget "$SEVENZIP_DOWNLOAD_URL" -O - | tar -xJf - -C ./7ztmp && \
 sudo mv ./7ztmp/7z* /usr/local/bin/ && \
 sudo chmod +x /usr/local/bin/7z* && \
 rm -rf ./7ztmp
