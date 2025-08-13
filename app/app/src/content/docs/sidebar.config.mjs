@@ -1,5 +1,5 @@
 /** @type {import('@astrojs/starlight/types').StarlightUserConfig} */
-const sidebar = [
+export const sidebarLinks = [
 	{
 		label: '👤 Matiboux.me',
 		link: 'https://matiboux.me',
@@ -21,50 +21,30 @@ const sidebar = [
 			target: '_blank',
 		},
 	},
+]
+
+/** @type {import('@astrojs/starlight/types').StarlightUserConfig} */
+const sidebar = [
+	...sidebarLinks,
 	{
 		label: 'Home',
-		link: '/',
+		slug: 'index',
 	},
 	{
-		label: 'Dev',
-		collapsed: false,
-		items: [
-			{
-				label: 'ChromaDB',
-				collapsed: true,
-				autogenerate: { directory: 'dev/chromadb', collapsed: true },
-			},
-			{
-				label: 'Docker',
-				collapsed: true,
-				autogenerate: { directory: 'dev/docker', collapsed: true },
-			},
-			{
-				label: 'GitHub',
-				collapsed: true,
-				autogenerate: { directory: 'dev/github', collapsed: true },
-			},
-			{
-				slug: 'dev',
-			},
-			{
-				slug: 'dev/tools',
-			},
-		],
+		label: 'Dev Guides →',
+		slug: 'dev',
 	},
 	{
 		label: 'System',
 		collapsed: false,
 		items: [
 			{
-				label: 'Windows',
-				collapsed: true,
-				autogenerate: { directory: 'system/windows', collapsed: true },
+				label: 'Windows Guides →',
+				slug: 'system/windows',
 			},
 			{
-				label: 'WSL',
-				collapsed: true,
-				autogenerate: { directory: 'system/wsl', collapsed: true },
+				label: 'WSL Guides →',
+				slug: 'system/wsl',
 			},
 		],
 	},
