@@ -19,6 +19,9 @@ export default defineConfig({
 			editLink: {
 				baseUrl: 'https://github.com/matiboux/matiboux-guides/edit/main/app/app/',
 			},
+			// Sidebar is overridden in this project
+			// Set config to empty here to avoid useless computation
+			sidebar: [],
 			locales: {
 				root: {
 					label: 'English',
@@ -99,9 +102,9 @@ export default defineConfig({
 					],
 				},
 			],
-			social: {
-				github: 'https://github.com/matiboux/matiboux-guides',
-			},
+			social: [
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/matiboux/matiboux-guides' },
+			],
 			customCss: [
 				'./src/styles/global.css',
 			],
