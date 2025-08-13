@@ -35,7 +35,7 @@ const sidebar = [
 		slug: 'dev',
 	},
 	{
-		label: 'System',
+		label: 'System Guides',
 		collapsed: false,
 		items: [
 			{
