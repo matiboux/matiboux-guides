@@ -13,7 +13,8 @@
     "build": "npm run check && npm run build-only",
     "astro": "astro",
     "astro:sync": "astro sync",
-    "astro:preview": "astro preview"
+    "astro:preview": "astro preview",
+    "deps:update": "pnpx -- npm-check-updates -t semver -u && pnpm i"
   },
   "repository": {
     "type": "git",
@@ -25,8 +26,8 @@
   "homepage": "https://github.com/matiboux/matiboux-guides#readme",
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/starlight": "^0.32.6",
-    "@astrojs/starlight-tailwind": "^3.0.1",
+    "@astrojs/starlight": "^0.35.2",
+    "@astrojs/starlight-tailwind": "^4.0.1",
     "@astrojs/svelte": "^7.1.0",
     "@iconify-json/eos-icons": "^1.2.4",
     "@iconify-json/mdi": "^1.2.3",
