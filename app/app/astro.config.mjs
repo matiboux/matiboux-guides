@@ -5,6 +5,11 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
+	site: process.env.ASTRO_SITE_URL || undefined,
+	base: process.env.ASTRO_BASE_PATH || undefined,
+	build: {
+		assetsPrefix: process.env.ASTRO_ASSETS_PREFIX || undefined,
+	},
 	trailingSlash: 'always',
 	integrations: [
 		svelte(),
@@ -13,6 +18,16 @@ export default defineConfig({
 			// description: 'Documentation website with Starlight',
 			editLink: {
 				baseUrl: 'https://github.com/matiboux/matiboux-guides/edit/main/app/app/',
+			},
+			locales: {
+				root: {
+					label: 'English',
+					lang: 'en',
+				},
+				fr: {
+					label: 'Français',
+					lang: 'fr',
+				},
 			},
 			sidebar: [
 				{
@@ -108,8 +123,12 @@ export default defineConfig({
 	},
 	env: {
 		schema: {
+			// Deployment configuration
 			GITHUB_REPOSITORY_URL: envField.string({ context: 'client', access: 'public', optional: true }),
 			GITHUB_SHA: envField.string({ context: 'client', access: 'public', optional: true }),
+			VERSION_TAG: envField.string({ context: 'client', access: 'public', optional: true }),
+			// Application configuration
+			// Add env vars for your application here.
 		},
 		validateSecrets: true,
 	},
