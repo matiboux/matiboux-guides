@@ -1,4 +1,4 @@
-import { sidebarLinks } from '~/content/docs/sidebar.config.mjs'
+import { sidebarLinks } from '../../sidebar.config.mjs'
 
 /** @type {import('@astrojs/starlight/types').StarlightUserConfig} */
 const sidebar = [
