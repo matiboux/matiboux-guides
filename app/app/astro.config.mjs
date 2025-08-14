@@ -47,6 +47,7 @@ export default defineConfig({
 				Banner: '~/components/overrides/Banner.astro',
 				Footer: '~/components/overrides/Footer.astro',
 			},
+			credits: false,
 		}),
 	],
 	vite: {
