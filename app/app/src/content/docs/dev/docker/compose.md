@@ -56,7 +56,7 @@ service_name:
 
 For readability, I recommend following a consistent order for properties in your `docker-compose.yml` file. This helps maintain clarity and makes it easier to understand the configuration at a glance.
 
-As a general guideline, properties should be grouped by their high-level purpose and ordered by scope, relevance, and chronological order of execution.
+As a general guideline, properties should be **grouped by their high-level purpose** and **ordered by scope**, relevance, and chronological order of execution.
 
 Specifically, in this example, we group properties into three main categories:
 - **Extend**: Configuration for inheritance.
@@ -65,11 +65,11 @@ Specifically, in this example, we group properties into three main categories:
 
 Properties are ordered within each group based on their relevance in the build or deployment process.
 
-Properties in the "Build" group are ordered according to build steps:
+Properties in the "**Build**" group are ordered according to build steps:
 1. Set the image name and tag, checking if it exists (`image`).
 2. Build the image with the specified configuration (`build`).
 
-Properties in the "Deploy" group are ordered according to the deployment steps:
+Properties in the "**Deploy**" group are ordered according to the deployment steps:
 1. Check service dependencies (`depends_on`).
 2. Set lifecycle management (`restart`).
 3. Prepare the host platform resources (`platform`, `deploy`).
@@ -84,4 +84,4 @@ Properties in the "Deploy" group are ordered according to the deployment steps:
 12. Monitor the container's health (`healthcheck`).
 13. Configure development features like hot-reloading (`develop`).
 
-When specifying paths in build configuration and volume mounts, I would recommend prefixing relative paths with `./` to make it clear that they are relative to the `context` directory or the compose file's location.
+When specifying paths in build configuration and volume mounts, I would recommend **prefixing relative paths** with `./` to make it clear that they are relative to the `context` directory or the compose file's location.
