@@ -29,6 +29,7 @@ service:
   network_mode: ""
   dns: []
   extra_hosts: []
+  env_file: []
   environment:
     ENV_KEY: value
   secrets: []
@@ -40,6 +41,7 @@ service:
   tty: false
   stdin_open: false
   tmpfs: []
+  volumes_from: []
   volumes: []
   healthcheck: []
   expose: []
