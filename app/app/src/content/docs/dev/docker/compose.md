@@ -17,6 +17,7 @@ service:
   build:
     context: .
     dockerfile: ./Dockerfile
+    target: build_target
     args:
       ARG_KEY: value
   # Deploy
