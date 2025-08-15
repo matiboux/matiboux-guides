@@ -25,8 +25,8 @@ service:
   restart: unless-stopped
   platform: []
   deploy: {}
+  network_mode: host
   networks: []
-  network_mode: ""
   dns: []
   extra_hosts: []
   env_file: []
