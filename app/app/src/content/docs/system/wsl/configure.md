@@ -20,23 +20,17 @@ sudo apt clean
 Install development tools & system utilities:
 
 ```sh
-# Git
-sudo apt install -y git
-
-# cURL
-sudo apt install -y curl
-
-# wget
-sudo apt install -y wget
-
-# unzip
-sudo apt install -y unzip
-
-# tree
-sudo apt install -y tree
-
-# htop
-sudo apt install -y htop
+# Install Git, cURL, wget, unzip, tree, htop
+sudo apt update && \
+sudo apt install -y \
+    git \
+    curl \
+    wget \
+    unzip \
+    tree \
+    htop \
+    && \
+sudo apt clean
 ```
 
 Install [GitHub CLI](https://cli.github.com/):
@@ -56,7 +50,7 @@ Install [GitHub CLI](https://cli.github.com/):
 Install [jq](https://jqlang.org/):
 
 ```sh
-# jq
+# Install jq
 sudo apt install -y jq
 ```
 
@@ -104,7 +98,7 @@ su "$(id -un)"
 docker run hello-world
 ```
 
-Install [dockerc](https://github.com/matiboux/dockerc) & [dockerx](https://github.com/matiboux/dockerx):
+Install [DockerC](https://github.com/matiboux/dockerc) & [DockerX](https://github.com/matiboux/dockerx):
 
 ```sh
 sudo /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/matiboux/dockerc/HEAD/install.sh)"
