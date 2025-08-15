@@ -22,14 +22,7 @@ Install development tools & system utilities:
 ```sh
 # Install Git, cURL, wget, unzip, tree, htop
 sudo apt update && \
-sudo apt install -y \
-    git \
-    curl \
-    wget \
-    unzip \
-    tree \
-    htop \
-    && \
+sudo apt install -y git curl wget unzip tree htop && \
 sudo apt clean
 ```
 
