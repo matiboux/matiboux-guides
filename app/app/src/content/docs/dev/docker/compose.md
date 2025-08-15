@@ -44,7 +44,7 @@ service:
   develop: []
 ```
 
-As a general guideline, my thinking is to group the properties by their high-level use ("Build" for building the image, "Deploy" for running the container) and order them by scope, relevance and chronological order of execution.
+As a general guideline, we group properties by their high-level purpose — "Build" for constructing the image and "Deploy" for running the container — and order them by scope, relevance, and the chronological order of execution.
 
 - The "Build" group contains properties used in `docker compose build`.
 - The "Deploy" group contains properties used in `docker compose up` (excluding the build steps).
