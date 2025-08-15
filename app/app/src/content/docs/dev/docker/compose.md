@@ -48,6 +48,104 @@ service:
   develop: []
 ```
 
+<!--
+Properties included in the example above:
+- extends
+- image
+- build
+- depends_on
+- restart
+- platform
+- deploy
+- network_mode
+- networks
+- dns
+- extra_hosts
+- env_file
+- environment
+- secrets
+- user
+- working_dir
+- read_only
+- entrypoint
+- command
+- tty
+- stdin_open
+- tmpfs
+- volumes_from
+- volumes
+- healthcheck
+- expose
+- ports
+- develop
+
+Properties not included in the example above:
+- annotations
+- attach
+- blkio_config
+- cpu_count
+- cpu_percent
+- cpu_shares
+- cpu_period
+- cpu_quota
+- cpu_rt_runtime
+- cpu_rt_period
+- cpus
+- cpuset
+- cap_add
+- cap_drop
+- cgroup
+- cgroup_parent
+- configs
+- container_name
+- credential_spec
+- device_cgroup_rules
+- devices
+- dns_opt
+- dns_search
+- domainname
+- driver_opts
+- external_links
+- gpus
+- group_add
+- hostname
+- init
+- ipc
+- isolation
+- labels
+- label_file
+- links
+- logging
+- mac_address
+- mem_limit
+- mem_reservation
+- mem_swappiness
+- memswap_limit
+- models
+- oom_kill_disable
+- oom_score_adj
+- pid
+- pids_limit
+- post_start
+- pre_stop
+- privileged
+- profiles
+- provider
+- pull_policy
+- runtime
+- scale
+- security_opt
+- shm_size
+- stop_grace_period
+- stop_signal
+- storage_opt
+- sysctls
+- ulimits
+- use_api_socket
+- userns_mode
+- uts
+-->
+
 As a general guideline, we group properties by their high-level purpose — "Build" for constructing the image and "Deploy" for running the container — and order them by scope, relevance, and the chronological order of execution.
 
 - The "Build" group contains properties used in `docker compose build`.
