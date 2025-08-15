@@ -33,6 +33,7 @@ service:
   environment:
     ENV_KEY: value
   secrets: []
+  privileged: false
   user: user
   working_dir: /app
   read_only: false
@@ -66,6 +67,7 @@ Properties included in the example above:
 - env_file
 - environment
 - secrets
+- privileged
 - user
 - working_dir
 - read_only
@@ -130,7 +132,6 @@ Properties not included in the example above:
 - pids_limit
 - post_start
 - pre_stop
-- privileged
 - profiles
 - provider
 - pull_policy
