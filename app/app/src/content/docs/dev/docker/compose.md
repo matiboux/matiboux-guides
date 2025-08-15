@@ -30,12 +30,15 @@ service:
   extra_hosts: []
   environment:
     ENV_KEY: value
+  secrets: []
   user: user
   working_dir: /app
+  read_only: false
   entrypoint: docker-entrypoint.sh
   command: start.sh
   tty: false
   stdin_open: false
+  tmpfs: []
   volumes: []
   healthcheck: []
   expose: []
