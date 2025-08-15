@@ -116,16 +116,17 @@ sudo /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/matiboux/dockerx
 
 ### Set up your SSH key
 
-Either generate a new SSH key:
+Either generate a new SSH key pair:
 
 ```sh
-# ssh-keygen -t ed25519
+# Run this and follow the instructions.
+ssh-keygen -t ed25519
 ```
 
-Or copy an existing SSH key:
+Or copy an existing SSH private key:
 
 ```sh
-# cp YOUR_SSH_KEY ~/.ssh/id_ed25519
+cp YOUR_SSH_KEY ~/.ssh/id_ed25519
 chmod 600 ~/.ssh/id_ed25519
 ```
 
