@@ -20,8 +20,8 @@ const sidebar = [
 				slug: 'dev/chromadb/api',
 			},
 			{
-				label: 'Docker Compose →',
-				slug: 'dev/docker/compose',
+				label: 'Docker →',
+				slug: 'dev/docker',
 			},
 			{
 				label: 'GitHub Guides →',
