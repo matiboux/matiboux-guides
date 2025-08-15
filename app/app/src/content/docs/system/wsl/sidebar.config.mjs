@@ -24,6 +24,10 @@ const sidebar = [
 				slug: 'system/wsl/install',
 			},
 			{
+				label: 'Configure WSL',
+				slug: 'system/wsl/configure',
+			},
+			{
 				label: 'Manage WSL virtual disk',
 				slug: 'system/wsl/vdisk',
 			},
