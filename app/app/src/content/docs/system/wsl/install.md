@@ -17,8 +17,7 @@ Set default WSL version to WSL 2:
 You may list available distros using the following command. You will see distros like Ubuntu, Debian, Arch Linux, Kali Linux, OpenSUSE, Fedora Linux, and more.
 
 ```sh
-wsl --list --online
-# or `wsl -l -o`
+wsl --list --online  # or `wsl -l -o`
 ```
 
 Install your preferred distro by specifying its name:
@@ -35,19 +34,19 @@ wsl --set-default {DISTRO}
 
 ### Install Ubuntu
 
-Install the distro:
-- Install Ubuntu: `wsl --install Ubuntu`
+Install the Ubuntu WSL distro:
+- Install Ubuntu: `wsl --install Ubuntu`.
 - Verify the distro is installed: `wsl --list --verbose` or `wsl -l -v`.
 
-Then, configure & start the distro:
-- Optionally, set the distro as default: `wsl --set-default Ubuntu`
-- Start the distro: `wsl -d Ubuntu`
-- On first launch, set up your username and password
+Configure and start the WSL distro:
+- Optionally, set the distro as default: `wsl --set-default Ubuntu`.
+- Start the distro: `wsl -d Ubuntu`.
+- On first launch, set up your username and password.
 
 Once the distro is running, you can:
-- Update packages: `sudo apt update && sudo apt upgrade`,
-- Customize your shell to your liking,
-- Access your Windows files in the distro at `/mnt/c/` (mount for the `C:` drive),
+- Update packages: `sudo apt update && sudo apt upgrade`.
+- Customize your shell.
+- Access your Windows files from WSL at `/mnt/c/` (mount for the `C:` drive).
 - Further configure WSL by editing `/etc/wsl.conf`.
 
 
