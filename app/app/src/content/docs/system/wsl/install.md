@@ -87,7 +87,7 @@ Then, configure & start the distro:
 
 When misconfigured, WSL might open the terminal with the `root` user or another user instead of your own user.
 
-Often after importing a distro, this configuration from the initial installation may not be preserved, leading to the default user falling back to `root`.
+Often after importing a distro, the default user configuration from the initial installation may not be preserved, leading to it falling back to `root`.
 
 You can explicitly set your username as the default user in the WSL configuration file (`/etc/wsl.conf`):
 
@@ -98,18 +98,15 @@ default={USERNAME}
 
 Then restart WSL and log back in. Check your user with the `whoami` command.
 
-### Access to the virtual disk file is denied
+### Access denied to the virtual disk file
 
-Access to the virtual disk file (`ext4.vhdx` file) may be denied due to file permission issues.
-This may happen when importing a distro from a backup or a past installation.
+Access to the virtual disk file (`ext4.vhdx`) may be denied due to file permission issues in Windows. This prevents WSL distro from starting. This may happen when the distro was imported from a backup or a past installation.
 
 To resolve this issue, you need to grant yourself access to the virtual disk file:
-- Close the distro if it is running: `wsl --terminate {distro}`
-- Open properties of the virtual disk file (`ext4.vhdx` file)
-- In properties, open the "Security" tab, then click "Edit"
-- Add your own Windows user and grant it full control
-- Apply and close
+- Shut down the distro if it is running: `wsl --terminate {distro}`.
+- Open the virtual disk file properties (`ext4.vhdx`).
+- Open the "Security" properties tab, then click "Edit".
+- Grant yourself (your Windows user) full control.
+- Apply changes and close the file properties.
 
-Then, retry starting the distro:
-- Start the distro: `wsl -d {distro}`
-- Check your user & data. Verify all is working as expected.
+Then try to start the distro again: `wsl -d {distro}`. Verify your user with the `whoami` command, your data, and that everything is working as expected.
