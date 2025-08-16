@@ -56,7 +56,7 @@ Then, configure & start the distro:
 - Check your data.
 
 :::note[Troubleshooting]
-- If the default user is `root` or not yours, see [fix steps below](#default-user-is-not-yours).
+- If the default user is `root` or not yours, see [fix steps below](#default-user-is-root-or-not-yours).
 :::
 
 <!-- https://learn.microsoft.com/fr-fr/windows/wsl/use-custom-distro -->
@@ -76,8 +76,8 @@ Then, configure & start the distro:
 - Check your data.
 
 :::note[Troubleshooting]
-- If starting the distro fails for permission issues, see [fix steps below](#import-distro-from-past-installation).
-- If the default user is `root` or not yours, see [fix steps below](#default-user-is-not-yours).
+- If starting the distro fails for permission issues, see [fix steps below](#access-denied-to-the-virtual-disk-file).
+- If the default user is `root` or not yours, see [fix steps below](#default-user-is-root-or-not-yours).
 :::
 
 
