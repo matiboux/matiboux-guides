@@ -83,16 +83,20 @@ Then, configure & start the distro:
 
 ## Troubleshooting
 
-### Default user is not yours
+### Default user is root or not yours
 
-If the default user (which opens on WSL start) is `root` or otherwise not yours, you may want to change it. To do so, override the default user configuration in `/etc/wsl.conf`:
+When misconfigured, WSL might open the terminal with the `root` user or another user instead of your own user.
 
-```properties
+Often after importing a distro, this configuration from the initial installation may not be preserved, leading to the default user falling back to `root`.
+
+You can explicitly set your username as the default user in the WSL configuration file (`/etc/wsl.conf`):
+
+```properties "{USERNAME}"
 [user]
-default={username}
+default={USERNAME}
 ```
 
-Then, restart WSL and log back in. Check your user with `whoami`.
+Then restart WSL and log back in. Check your user with the `whoami` command.
 
 ### Access to the virtual disk file is denied
 
