@@ -5,7 +5,7 @@ title: Install WSL
 ## Preconfiguration
 
 Update WSL:
-- In Windows CLI (PowerShell/Batch): `wsl --update`
+- In a Windows terminal (PowerShell/CMD): `wsl --update`
 - Manually: [learn.microsoft.com/en-us/windows/wsl/install-manual](https://learn.microsoft.com/en-us/windows/wsl/install-manual)
 
 Set default WSL version to WSL 2:
@@ -14,11 +14,24 @@ Set default WSL version to WSL 2:
 
 ## Install Linux distro
 
-You may list available distros using the command: `wsl --list --online` or `wsl -l -o`.
+You may list available distros using the following command. You will see distros like Ubuntu, Debian, Arch Linux, Kali Linux, OpenSUSE, Fedora Linux, and more.
 
-Install a distro using the command: `wsl --install {distro}`.
+```sh
+wsl --list --online
+# or `wsl -l -o`
+```
 
-Notably, you can install Ubuntu, Debian, Kali Linux, Oracle Linux, or OpenSUSE.
+Install your preferred distro by specifying its name:
+
+```sh "{DISTRO}"
+wsl --install {DISTRO}
+```
+
+If you install multiple distros, you can set one as the default when starting WSL. The default distro will be started when you run `wsl` without specifying a distro name.
+
+```sh "{DISTRO}"
+wsl --set-default {DISTRO}
+```
 
 ### Install Ubuntu
 
