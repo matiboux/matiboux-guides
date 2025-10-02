@@ -91,12 +91,35 @@ git commit --no-edit --reset-author
 
 To cherry-pick multiple commits without squashing them, repeat this process for each commit.
 
-The following script automates this process for a range of commits, preserving each commit message but resetting the author name and date:
+The following script automates this process for a range of commits:
+- It preserves each commit message but resets the author name and date
+- It stops if a conflict occurs, allowing the user to resolve it before continuing
 
 ```sh
 #!/bin/sh
-for commit in $(git rev-list --reverse "<start-commit-hash>"^.."<end-commit-hash>"); do
-  git cherry-pick -n "$commit"
-  git commit -C "$commit" --no-edit --reset-author
+PICK_START_COMMIT='<start-commit-hash>'
+PICK_END_COMMIT='<end-commit-hash>'
+PICK_CONFLICT_MESSAGE="$(cat <<EOF
+Please resolve the conflicts, add changes and run the following command to continue:
+  git commit -C "\$PICK_CURRENT_COMMIT" --no-edit --reset-author
+  for PICK_CURRENT_COMMIT in \$(git rev-list --reverse "\$PICK_CURRENT_COMMIT".."\$PICK_END_COMMIT"); do
+    git cherry-pick -n "\$PICK_CURRENT_COMMIT"
+    if [ \$? -ne 0 ]; then
+      echo '' >&2
+      echo "\$PICK_CONFLICT_MESSAGE" >&2
+      break
+    fi
+    git commit -C "\$PICK_CURRENT_COMMIT" --no-edit --reset-author
+  done
+EOF
+)"
+for PICK_CURRENT_COMMIT in $(git rev-list --reverse "$PICK_START_COMMIT"^.."$PICK_END_COMMIT"); do
+  git cherry-pick -n "$PICK_CURRENT_COMMIT"
+  if [ $? -ne 0 ]; then
+    echo '' >&2
+    echo "$PICK_CONFLICT_MESSAGE" >&2
+    break
+  fi
+  git commit -C "$PICK_CURRENT_COMMIT" --no-edit --reset-author
 done
 ```
