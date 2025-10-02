@@ -24,6 +24,10 @@ const sidebar = [
 				slug: 'dev/docker/compose',
 			},
 			{
+				label: 'Git Guides →',
+				slug: 'dev/git',
+			},
+			{
 				label: 'GitHub Guides →',
 				slug: 'dev/github',
 			},
