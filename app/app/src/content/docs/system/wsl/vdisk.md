@@ -15,7 +15,10 @@ WSL virtual disk files can quickly take up a lot of space, because they store th
 The first steps is to clean up the filesystem within the distro itself. Often, you would:
 - Remove package manager cache: e.g. `sudo apt clean`.
 - Remove unused packages: e.g. `sudo apt autoremove`.
-- Remove temporary files & logs
+- Remove temporary files & logs:
+  `find . \( \( -name "*.log" -type f \) -o \( -name ".cache" -type d \) \) -prune -print -exec rm -rf '{}' +` (?)
+- Remove app dependencies:  
+  `find . \( -name "node_modules" -o -name ".venv" -o -name "venv" \) -type d -prune -print -exec rm -rf '{}' +`
 - Prune Docker images & containers: e.g. `docker system prune`.
 
 You can see your filesystem size within the distro using the command: `df -h`.
