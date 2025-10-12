@@ -4,9 +4,11 @@ title: Docker Compose
 
 ## Services configuration
 
-Every service in a `docker-compose.yml` file has a set of configuration properties that define how the service should be built and run.
+Every service in a `docker-compose.yml` file has a set of configuration properties that define how
+the service should be built and run.
 
-Here are some of the properties you can use to configure a service:
+Here is a service configuration example with grouping and ordering for some common properties you
+may use in your own Docker Compose definitions:
 
 ```yaml
 service_name:
@@ -17,7 +19,7 @@ service_name:
   build:
     context: .
     dockerfile: ./Dockerfile
-    target: build_target
+    target: app_prod
     args:
       ARG_KEY: value
   # Deploy
@@ -51,6 +53,25 @@ service_name:
   develop: []
 ```
 
+To highlight inheritance, in a `docker-compose.override.yml` file or any other, you can:
+- Mark a service as "Inherited" with a comment above the service name.
+- Use the group labels "Build override" and "Deploy override" to indicate they are overriding inherited properties.
+
+```yaml
+# Inherited
+service_name:
+  # Extend
+  extends: []
+  # Build override
+  image: image_name:dev
+  build:
+    target: app_dev
+    args: []
+  # Deploy override
+  environment: []
+  ports: []
+```
+
 
 ### Order of configuration properties
 
@@ -60,7 +81,7 @@ As a general guideline, properties should be **grouped by their high-level purpo
 
 Specifically, in this example, we group properties into three main categories:
 - **Extend**: Configuration for inheritance.
-- **Build**: Configuration for building the Docker image (used in `docker compose build`).
+- **Build**: Configuration for building the image (used in `docker compose build`).
 - **Deploy**: Configuration for running the container (used in `docker compose up`).
 
 Properties are ordered within each group based on their relevance in the build or deployment process.
