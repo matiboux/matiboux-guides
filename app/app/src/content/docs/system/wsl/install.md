@@ -68,7 +68,7 @@ Then, configure & start the distro:
 - Check your data.
 
 :::note[Troubleshooting]
-- If the default user is `root` or not yours, see [fix steps below](#default-user-is-root-or-not-yours).
+- If the default user is `root` or not yours, see [fix steps below](#default-user-root-or-not-yours).
 :::
 
 <!-- https://learn.microsoft.com/fr-fr/windows/wsl/use-custom-distro -->
@@ -88,12 +88,14 @@ Then, configure & start the distro:
 - Check your data.
 
 :::note[Troubleshooting]
-- If starting the distro fails for permission issues, see [fix steps below](#access-denied-to-the-virtual-disk-file).
-- If the default user is `root` or not yours, see [fix steps below](#default-user-is-root-or-not-yours).
+- If starting the distro fails for permission issues, see [fix steps below](#access-denied-vdisk-file).
+- If the default user is `root` or not yours, see [fix steps below](#default-user-root-or-not-yours).
 :::
 
 
 ## Troubleshooting
+
+<a name="default-user-root-or-not-yours"></a>
 
 ### Default user is root or not yours
 
@@ -109,6 +111,8 @@ default={USERNAME}
 ```
 
 Then restart WSL and log back in. Check your user with the `whoami` command.
+
+<a name="access-denied-vdisk-file"></a>
 
 ### Access denied to the virtual disk file
 
