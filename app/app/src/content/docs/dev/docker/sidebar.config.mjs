@@ -16,6 +16,10 @@ const sidebar = [
 		collapsed: false,
 		items: [
 			{
+				label: 'Docker Guides',
+				slug: 'dev/docker',
+			},
+			{
 				label: 'Docker Compose',
 				slug: 'dev/docker/compose',
 			},
