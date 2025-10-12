@@ -4,12 +4,12 @@ title: GitHub repositories
 
 ## Create repository
 
-_TODO_
+Open [github.com/new](https://github.com/new) to create a new repository.
 
 
 ## Configure repository
 
-### Branches
+### Repository branches
 
 The default branch should be `main` by default.
 
@@ -37,30 +37,37 @@ Most of them should be first merged into the `dev` branch, to ensure proper inte
 
 After a bunch of changes are merged into the `dev` branch and are deemed production-ready, they can be merged into the higher-level primary branches. For example, from `dev` into `staging`, then later from `staging` into `main`.
 
-### Settings
+### Repository settings
 
-- Pull Requests:
-  - ✅ Enable `Allow merge commits`: Use merge commits to merge pull requests between primary branches and preserve all commit history between the primary branches.
-  - ✅ Enable `Allow squash merging`: Use squash commits to merge pull requests between secondary branches and primary branches to keep the commit history clean. To keep the commit history meaningful, ensure the feature branches are atomic and makes changes for a well-defined purpose.
-  - ❎ Disable `Allow rebase merging`.
+This is the typical configuration I use in my GitHub repositories.
+
+Under "Pull Requests":
+- ✅ Enable `Allow merge commits`:
+  - Use merge commits to merge between primary branches: e.g. from `dev` into `main`.
+  - Preserves all commit history between branches.
+  - 🔧 Set default commit message to `Pull request title`.
+- ✅ Enable `Allow squash merging`:
+  - Use squash commits to merge with secondary branches: e.g. from `feat/*` into `dev`.
+  - Combines all feature branch commits into a single commit in the main history.
+  - 🔧 Set default commit message to `Pull request title`.
+- ❌ Disable `Allow rebase merging`.
 
 <span></span>
 
 - ✅ Enable `Always suggest updating pull request branches`
-
-<span></span>
-
 - ✅ Enable `Allow auto-merge`
-
-<span></span>
-
 - ✅ Enable `Automatically delete head branches`
 
-<span></span>
+Under "Archives":
+- ❌ Disable `Include Git LFS objects in archives` unless you have a specific need for it, as it would incur additional costs.
 
+Under "Pushes":
 - ✅ Enable `Limit how many branches and tags can be updated in a single push`
+  - 🔧 Default is up to `5` branches and tags, `2` may be sufficient.
 
 
+<!--
 ## Use repository
 
-_TODO_
+🚧 _Work in progress._
+-->

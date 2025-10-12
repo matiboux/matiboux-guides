@@ -6,6 +6,12 @@
     "paths": {
       "/*": [ "*" ],
       "~/*": [ "src/*" ],
-    }
+      "@astrojs/starlight/utils/*": [
+        "./node_modules/@astrojs/starlight/utils/*"
+      ]
+    },
+    "types": [
+      "vitest/globals"
+    ]
   }
 }

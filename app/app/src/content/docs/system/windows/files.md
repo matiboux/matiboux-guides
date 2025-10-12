@@ -20,11 +20,11 @@ Low storage capacity (256 GB or less):
 - One single partition for everything: Windows, apps, personal files.
 - Make sure to backup your personal files regularly.
 
-Medium storage capacity (256 GB to 1 TB):
+Medium storage capacity (384 GB to 1 TB):
 - First partition for Windows & apps: between ¼ and ½ of your storage capacity.
 - Second partition for personal files: the rest of your storage capacity.
 
-High storage capacity (2 TB or more):
+High storage capacity (1.5 TB or more):
 - First partition for Windows: 256 GB should be comfortable.
 - Second partition for apps: between 256 GB and 1 TB.
 - Third partition for personal files: the rest of your storage capacity.
