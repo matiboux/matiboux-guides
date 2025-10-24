@@ -39,6 +39,9 @@ des outils de gestion de projet et de packages comme `poetry` ou `uv`.
   Initialisation d'un projet avec `uv init` (crée une structure de projet de base dans le dossier
   courant).
 
+  _Plus d'informations sur `uv init` :_
+  _[uv - Creating projects](https://docs.astral.sh/uv/concepts/projects/init/)._
+
 - `poetry` ([Poetry - Installation](https://python-poetry.org/docs/#installation)) :
 
   ```sh
@@ -149,8 +152,12 @@ manuellement l'environnement. Utilisez plutôt `uv run`, par exemple :
 uv run <command>
 ```
 
-Plus d'informations sur `uv sync` :
-[uv - Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/).
+_Plus d'informations sur la gestion des dépendances avec `uv` :_
+_[uv - Managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/)._
+
+_Plus d'informations sur `uv sync` et `uv run` :_
+_[uv - Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/) et_
+_[uv - Running commands in projects](https://docs.astral.sh/uv/concepts/projects/run/)._
 
 
 ## Bonus de `uv` : Gestion d'environnements Python
@@ -604,3 +611,23 @@ uv run pre-commit install
   uv add --dev doc8
   PYTHONPATH=. uv run doc8 docs/
   ```
+
+
+## TL;DR, les références rapides
+
+- Statut des versions de Python : [devguide.python.org/versions](https://devguide.python.org/versions/)
+- [uv - Installation](https://docs.astral.sh/uv/getting-started/installation/)
+- [Poetry - Installation](https://python-poetry.org/docs/#installation)
+- [uv - Creating projects](https://docs.astral.sh/uv/concepts/projects/init/)
+- Syntaxe des versions de dépendances : [PEP 440 - Version Specifiers](https://peps.python.org/pep-0440/#version-specifiers)
+- [SemVer - Semantic Versioning](https://semver.org/lang/fr/)
+- [uv - Managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/)
+- [uv - Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/)
+- [uv - Running commands in projects](https://docs.astral.sh/uv/concepts/projects/run/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [Pytest](https://docs.pytest.org/en/stable/)
+- [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/)
+- [Pylint](https://pylint.pycqa.org/en/latest/)
+- [Ruff](https://ruff.rs/)
+- [MyPy](https://mypy.readthedocs.io/en/stable/)
+- [Pre-commit](https://pre-commit.com/)
