@@ -16,11 +16,6 @@ Vous pouvez installer Python via:
 - Le gestionnaire de paquets de votre système (ex: `apt`, `brew`, `choco`, etc.)
 - Un gestionnaire de versions comme `pyenv` : [github.com/pyenv/pyenv](https://github.com/pyenv/pyenv)
 
-- Python 3.13 dans notre exemple
-- Python 3.9 est obsolète depuis octobre 2025 !
-- Suivez le statut des versions de Python sur le guide officiel :
-  [devguide.python.org/versions](https://devguide.python.org/versions/).
-
 
 ## Démarrage naïf d'un projet
 
