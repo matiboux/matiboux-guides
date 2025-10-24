@@ -17,7 +17,7 @@ Vous pouvez installer Python via:
 - Un gestionnaire de versions comme `pyenv` : [github.com/pyenv/pyenv](https://github.com/pyenv/pyenv)
 
 
-## Démarrage naïf d'un projet
+### Démarrage naïf d'un projet
 
 La manière naïve de démarrer un projet Python est de créer un dossier, avec deux fichiers :
 `main.py` (le code source) et `requirements.txt` (la liste des dépendances).
@@ -76,7 +76,7 @@ uv add pandas
 fichier `pyproject.toml` de votre projet.
 
 
-## Syntaxe des versions de dépendances
+### Syntaxe des versions de dépendances
 
 Le standard [PEP 440](https://peps.python.org/pep-0440/#version-specifiers) définit des syntaxes
 pour préciser les versions des dépendances que vous souhaitez installer.
@@ -107,7 +107,7 @@ manière générale, le premier chiffre non nul doit être considéré comme le 
 version et doit donc être fixé par une contrainte stricte (par exemple `~=0.9.3`).
 
 
-## Installation de dépendances, niveau avancé
+### Niveau avancé de la gestion des dépendances
 
 Il est probable que vous ayez besoin d'outils de développement qui ne sont pas des dépendances
 nécessaires à l'exécution de votre application. Les gestionnaires de packages modernes permettent
@@ -153,7 +153,7 @@ Plus d'informations sur `uv sync` :
 [uv - Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/).
 
 
-## Bonus : Gestion d'environnements Python
+## Bonus de `uv` : Gestion d'environnements Python
 
 En bonus, `uv` permet aussi de gérer vos environnements Python.
 
@@ -204,7 +204,9 @@ _`PYTHONPATH=.` permet d'ajouter le dossier courant au `sys.path` de Python, ce 
 l'import des modules locaux du projet._
 
 
-## Pytest (tests unitaire et fonctionnels)
+## Outils de développement principaux
+
+### Pytest (tests unitaire et fonctionnels)
 
 Premier outil de développement, incontournable : [Pytest](https://docs.pytest.org/en/stable/).
 
@@ -226,7 +228,7 @@ PYTHONPATH=. uv run pytest .
 Pytest affichera le rapport des tests et des erreurs dans la console.
 
 
-## Pytest avec couverture
+### Pytest avec couverture
 
 Plugin Pytest pour mesurer la couverture de code :
 [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/).
@@ -248,7 +250,7 @@ Pytest affichera le rapport des tests avec une tableau supplémentaire indiquant
 code pour chacun des fichiers de votre projet.
 
 
-## Pylint (qualité de code)
+### Pylint (qualité de code)
 
 Linter populaire pour analyser la qualité de votre code :
 [Pylint](https://pylint.pycqa.org/en/latest/).
@@ -271,7 +273,7 @@ PYTHONPATH=. uv run pylint .
 Pylint affichera un rapport avec les erreurs et donnera une note globale de qualité à votre projet.
 
 
-## Isort (propreté des imports)
+### Isort (propreté des imports)
 
 Outil simple pour trier et organiser automatiquement les imports dans vos fichiers Python :
 [Isort](https://pycqa.github.io/isort/).
@@ -291,7 +293,7 @@ PYTHONPATH=. uv run isort . --apply
 ```
 
 
-## Black (formatage et style du code)
+### Black (formatage et style du code)
 
 Outil de formatage de code automatique, très populaire dans la communauté Python :
 [Black](https://black.readthedocs.io/en/stable/).
@@ -310,7 +312,7 @@ PYTHONPATH=. uv run black .
 ```
 
 
-## Ruff (qualité de code et formatage)
+### Ruff (qualité de code et formatage)
 
 Outil de linting et de formatage de code très populaire dans la communauté Python :
 [Ruff](https://ruff.rs/).
@@ -382,7 +384,7 @@ line-ending = "lf"
 ```
 
 
-## MyPy (vérification de types)
+### MyPy (vérification de types)
 
 Outil de vérification statique de types pour Python :
 [MyPy](https://mypy.readthedocs.io/en/stable/).
@@ -397,7 +399,7 @@ PYTHONPATH=. uv run mypy --explicit-package-bases .
 ```
 
 
-## Pre-commit, pour automatiser l'exécution des outils
+### Pre-commit, pour automatiser l'exécution des outils
 
 Une fois installés en dépendances de développement, vous pouvez automatiser l'exécution de ces
 outils via des scripts. Notamment en CI/CD, ou localement avec
@@ -490,6 +492,7 @@ uv run pre-commit install
   PYTHONPATH=. uv run interrogate -v .
   ```
 
+
 ### Pour la robustesse du code
 
 - [Hypothesis](https://hypothesis.readthedocs.io/en/latest/)
@@ -514,6 +517,7 @@ uv run pre-commit install
   uv add --dev pyright
   PYTHONPATH=. uv run pyright .
   ```
+
 
 ### Pour la sécurité
 
@@ -556,6 +560,7 @@ uv run pre-commit install
   PYTHONPATH=. uv run safety scan
   ```
 
+
 ### Pour la modernisation du code
 
 - [Pyupgrade](https://github.com/asottile/pyupgrade)
@@ -567,6 +572,7 @@ uv run pre-commit install
   uv add --dev pyupgrade
   PYTHONPATH=. uv run pyupgrade --py313-plus
   ```
+
 
 ### Pour la documentation
 
