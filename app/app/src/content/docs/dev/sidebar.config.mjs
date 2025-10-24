@@ -32,6 +32,10 @@ const sidebar = [
 				slug: 'dev/github',
 			},
 			{
+				label: 'Python Guides →',
+				slug: 'dev/python',
+			},
+			{
 				label: 'Development Tools',
 				slug: 'dev/tools',
 			},
