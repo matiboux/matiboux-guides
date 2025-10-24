@@ -1,5 +1,5 @@
 ---
-title: Git Guides
+title: Python Guides
 ---
 
 - [Python Best Practices](<./best-practices/>)
