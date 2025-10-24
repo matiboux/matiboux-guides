@@ -1,5 +1,5 @@
 ---
-title: Python Best Practices (TL;DR)
+title: Python Best Practices
 ---
 
 
