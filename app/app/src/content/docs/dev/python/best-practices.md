@@ -512,17 +512,14 @@ uv run pre-commit install
   PYTHONPATH=. uv run pytest --hypothesis-show-statistics
   ```
 
-- [Pyright](https://github.com/microsoft/pyright)
+- [ty](https://docs.astral.sh/ty/)
 
-  Pyright est un vérificateur de types rapide développé par Microsoft, souvent utilisé comme
-  alternative à MyPy. Il est également disponible en tant qu'extension pour VS Code.
-
-  En console, l'outil est plus lourd que MyPy et a notamment une dépendance à Node.js, ce qui peut
-  le rendre moins adapté pour une intégration CI/CD ou avec Pre-commit.
+  ty est un vérificateur de types rapide développé par les créateurs de uv et Ruff. Il est
+  actuellement en phase bêta, mais prometteur comme alternative à MyPy et Pyright.
 
   ```sh
-  uv add --dev pyright
-  PYTHONPATH=. uv run pyright .
+  uv add --dev ty
+  PYTHONPATH=. uv run ty check .
   ```
 
 - [Pyright](https://github.com/microsoft/pyright)
