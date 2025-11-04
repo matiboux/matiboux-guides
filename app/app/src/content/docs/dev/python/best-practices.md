@@ -322,7 +322,7 @@ PYTHONPATH=. uv run black .
 ### Ruff (qualité de code et formatage)
 
 Outil de linting et de formatage de code très populaire dans la communauté Python :
-[Ruff](https://ruff.rs/).
+[Ruff](https://docs.astral.sh/ruff/).
 
 Mentionné depuis 3 sections, Ruff permet de remplir les fonctions de Pylint, isort et Black, et
 bien plus encore, avec un seul outil rapide et efficace.
@@ -525,6 +525,19 @@ uv run pre-commit install
   PYTHONPATH=. uv run pyright .
   ```
 
+- [Pyright](https://github.com/microsoft/pyright)
+
+  Pyright est un vérificateur de types rapide développé par Microsoft, souvent utilisé comme
+  alternative à MyPy. Il est également disponible en tant qu'extension pour VS Code.
+
+  En console, l'outil est plus lourd que MyPy et a notamment une dépendance à Node.js, ce qui peut
+  le rendre moins adapté pour une intégration CI/CD ou avec Pre-commit.
+
+  ```sh
+  uv add --dev pyright
+  PYTHONPATH=. uv run pyright .
+  ```
+
 
 ### Pour la sécurité
 
@@ -628,6 +641,6 @@ uv run pre-commit install
 - [Pytest](https://docs.pytest.org/en/stable/)
 - [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/)
 - [Pylint](https://pylint.pycqa.org/en/latest/)
-- [Ruff](https://ruff.rs/)
+- [Ruff](https://docs.astral.sh/ruff/)
 - [MyPy](https://mypy.readthedocs.io/en/stable/)
 - [Pre-commit](https://pre-commit.com/)
