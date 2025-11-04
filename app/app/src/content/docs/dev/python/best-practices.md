@@ -24,12 +24,12 @@ La manière naïve de démarrer un projet Python est de créer un dossier, avec 
 
 C'est une approche correcte pour la création de scripts simples et des expérimentations rapides.
 Cependant, pour des projets plus complexes ou visant la production, il est recommandé d'utiliser
-des outils de gestion de projet et de packages comme `poetry` ou `uv`.
+des outils de gestion de projet et de packages comme uv ou Poetry.
 
 
 ## Outils de gestion de projet et dépendances
 
-- `uv` ([Installing uv](https://docs.astral.sh/uv/getting-started/installation/)) :
+- [uv](https://docs.astral.sh/uv/) ([Installing uv](https://docs.astral.sh/uv/getting-started/installation/)) :
 
   ```sh
   curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -42,7 +42,7 @@ des outils de gestion de projet et de packages comme `poetry` ou `uv`.
   _Plus d'informations sur `uv init` :_
   _[uv - Creating projects](https://docs.astral.sh/uv/concepts/projects/init/)._
 
-- `poetry` ([Poetry - Installation](https://python-poetry.org/docs/#installation)) :
+- [Poetry](https://python-poetry.org/) ([Poetry - Installation](https://python-poetry.org/docs/#installation)) :
 
   ```sh
   curl -sSL https://install.python-poetry.org | python3 -
@@ -57,7 +57,7 @@ standard pour les projets Python modernes. Ce fichier définit votre projet, ses
 configurations des outils qui l'accompagnent.
 
 :::note
-Le reste de ce guide utilisera `uv` pour les exemples.
+Le reste de ce guide utilisera uv pour les exemples.
 :::
 
 
@@ -75,7 +75,7 @@ Sinon, pour installer une dépendance directement, par exemple `pandas` :
 uv add pandas
 ```
 
-`uv` va automatiquement identifier la dernière version stable de `pandas` et l'ajouter dans le
+uv va automatiquement identifier la dernière version stable de `pandas` et l'ajouter dans le
 fichier `pyproject.toml` de votre projet.
 
 
@@ -152,7 +152,7 @@ manuellement l'environnement. Utilisez plutôt `uv run`, par exemple :
 uv run <command>
 ```
 
-_Plus d'informations sur la gestion des dépendances avec `uv` :_
+_Plus d'informations sur la gestion des dépendances avec uv :_
 _[uv - Managing dependencies](https://docs.astral.sh/uv/concepts/projects/dependencies/)._
 
 _Plus d'informations sur `uv sync` et `uv run` :_
@@ -160,9 +160,9 @@ _[uv - Locking and syncing](https://docs.astral.sh/uv/concepts/projects/sync/) e
 _[uv - Running commands in projects](https://docs.astral.sh/uv/concepts/projects/run/)._
 
 
-## Bonus de `uv` : Gestion d'environnements Python
+## Bonus de uv : Gestion d'environnements Python
 
-En bonus, `uv` permet aussi de gérer vos environnements Python.
+En bonus, uv permet aussi de gérer vos environnements Python.
 
 Installez et gérez vos versions de Python avec `uv python`
 :
