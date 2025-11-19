@@ -7,10 +7,10 @@ const sidebar = [
 		label: '← Home',
 		slug: 'index',
 	},
-	// {
-	// 	label: '← System Guides',
-	// 	slug: 'system',
-	// },
+	{
+		label: '← System Guides',
+		slug: 'system',
+	},
 	{
 		label: 'Linux Guides',
 		collapsed: false,
