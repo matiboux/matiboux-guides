@@ -78,3 +78,30 @@ After setting up port forwarding on your router, you should be able to access yo
 server from the Internet using your public IP address.
 
 Find your public IP address by visiting a site like [test-ipv6.com](https://test-ipv6.com/).
+
+
+## Clean up port forwarding
+
+To remove the port forwarding rule you created earlier, run the following command in an
+administrator PowerShell terminal:
+
+```ps
+netsh interface portproxy delete v4tov4 listenport=8080 listenaddress=0.0.0.0
+```
+
+This will delete the portproxy rule and stop forwarding external traffic to your WSL instance.
+
+You can verify that the rule has been removed by running:
+
+```ps
+netsh interface portproxy show v4tov4
+```
+
+If there are no rules listed, the port forwarding has been successfully removed.
+
+Finally, to stop the HTTP server running in Docker, you can find the container ID and stop it:
+
+```sh
+docker ps
+docker stop <container_id>
+```
