@@ -31,6 +31,10 @@ const sidebar = [
 				label: 'Manage WSL virtual disk',
 				slug: 'system/wsl/vdisk',
 			},
+			{
+				label: 'Expose WSL port to the Internet',
+				slug: 'system/wsl/expose-port',
+			},
 		],
 	},
 ]
