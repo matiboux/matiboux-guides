@@ -1,5 +1,5 @@
 ---
-title: Expose WSL port to the Internet
+title: Expose WSL port to network
 ---
 
 ## Start an HTTP server in WSL

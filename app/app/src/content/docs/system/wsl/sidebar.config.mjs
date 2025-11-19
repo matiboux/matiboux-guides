@@ -32,7 +32,7 @@ const sidebar = [
 				slug: 'system/wsl/vdisk',
 			},
 			{
-				label: 'Expose WSL port to the Internet',
+				label: 'Expose WSL port to network',
 				slug: 'system/wsl/expose-port',
 			},
 		],
