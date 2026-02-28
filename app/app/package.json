@@ -41,7 +41,7 @@
     "astro": "^5.15.9",
     "nanostores": "^0.11.4",
     "sass": "^1.93.2",
-    "svelte": "^5.39.11",
+    "svelte": "^5.53.5",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3"
   },
