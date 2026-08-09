@@ -28,7 +28,7 @@
   "homepage": "https://github.com/matiboux/matiboux-guides#readme",
   "dependencies": {
     "@astrojs/check": "^0.9.10",
-    "@astrojs/starlight": "^0.40.0",
+    "@astrojs/starlight": "^0.41.7",
     "@astrojs/starlight-tailwind": "^5.0.0",
     "@astrojs/svelte": "^7.2.5",
     "@iconify-json/eos-icons": "^1.2.4",
@@ -38,7 +38,7 @@
     "@iconify/tailwind4": "^1.2.3",
     "@nanostores/persistent": "^0.10.2",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^6.4.8",
+    "astro": "^7.2.0",
     "nanostores": "^0.11.4",
     "sass": "^1.102.0",
     "svelte": "^5.56.8",
