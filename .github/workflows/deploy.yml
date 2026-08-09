@@ -45,12 +45,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
+    # Only run if:
+    # - Deploys are not disabled
+    if: |
+      vars.CI_DISABLE_DEPLOYS != 'true'
+
     steps:
 
-      # Dependency steps
+      # Initialization steps
 
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0 # Fetch full history
+
+      # Dependency steps
 
       - name: Install jq
         run: |
@@ -85,7 +94,7 @@ jobs:
           load_var 'ASTRO_BASE_PATH' 'true'
           load_var 'ASTRO_ASSETS_PREFIX' 'true'
 
-          # Application
+          # Application (app env vars)
           # (Load env vars for your application here.)
 
           echo '::endgroup::'
@@ -95,30 +104,41 @@ jobs:
       - name: Copy Git history in app source folder
         run: |
           # Copy app source code git history
-          # Initialize Git repository in app source code directory
+          echo '::group::Init Git repository in app source code directory'
           (
-            cd app/app &&
+            cd app &&
             rm -rf .git &&
             git init -b main &&
             git config receive.denyCurrentBranch ignore
           )
-          # Get Git history of app source code
-          git subtree split --prefix=app/app -b app-history
-          # Push Git history to app source code directory
+          echo '::endgroup::'
+          echo '::group::Get Git history of app source code'
+          git subtree split --prefix=app -b app-history
+          echo '::endgroup::'
+          echo '::group::Push Git history to app source code directory'
           (
-            git remote add app ./app/app/.git &&
+            git remote add app ./app/.git &&
             git push app app-history:main &&
             git branch -D app-history &&
             git remote remove app
           )
+          echo '::endgroup::'
+          echo '::group::Reset Git repository index in app source code directory'
+          (
+            cd app &&
+            git reset
+          )
+          echo '::endgroup::'
 
       - name: Pull dependencies
         run: |
           # docker compose pull --ignore-buildable
+          echo '::group::Pull details'
           docker compose \
             -f ./docker-compose.yml -f ./docker-compose.cicd.yml \
             --env-file .env \
             pull --ignore-buildable
+          echo '::endgroup::'
 
       - name: Build for production
         env:
@@ -132,27 +152,31 @@ jobs:
           ASTRO_SITE_URL: ${{ env.ASTRO_SITE_URL }}
           ASTRO_BASE_PATH: ${{ env.ASTRO_BASE_PATH }}
           ASTRO_ASSETS_PREFIX: ${{ env.ASTRO_ASSETS_PREFIX }}
-          # Application
+          # Application (app env vars)
           # (Add env vars for your application here.)
         run: |
           # docker compose build
+          echo '::group::Build details'
           export DOCKER_UID="$(id -u)"
           docker compose \
             -f ./docker-compose.yml -f ./docker-compose.cicd.yml \
             --env-file .env \
             build
+          echo '::endgroup::'
 
       - name: Copy application files
         run: |
           # docker compose up
+          echo '::group::Run details'
           export DOCKER_UID="$(id -u)"
           docker compose \
             -f ./docker-compose.yml -f ./docker-compose.cicd.yml \
             --env-file .env \
             up
+          echo '::endgroup::'
 
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./app/dist
 
@@ -168,6 +192,7 @@ jobs:
 
     # Set GITHUB_TOKEN permissions for the job
     permissions:
+      actions: write
       id-token: write
       pages: write
 
@@ -182,4 +207,41 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+
+      - name: Delete GitHub Pages artifact
+        uses: actions/github-script@v8
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          ARTIFACT_PATTERN: '^github-pages$'
+        with:
+          script: |
+            const runId = process.env.GITHUB_RUN_ID;
+            const artifactPattern = new RegExp(process.env.ARTIFACT_PATTERN);
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            core.info(`Listing artifacts for run '${runId}' in '${owner}/${repo}'...`);
+            const res = await github.rest.actions.listWorkflowRunArtifacts({
+              owner,
+              repo,
+              run_id: runId,
+            });
+            const artifacts = res.data?.artifacts || [];
+            if (artifacts.length <= 0) {
+              core.info('No artifacts found.');
+              return;
+            }
+            const requiredArtifacts = artifacts.filter(a => artifactPattern.test(a.name));
+            if (requiredArtifacts.length <= 0) {
+              core.info('Required artifact(s) not found.');
+              return;
+            }
+            for (const artifact of requiredArtifacts) {
+              core.info(`Deleting artifact '${artifact.name}' (${artifact.id})...`);
+              await github.rest.actions.deleteArtifact({
+                owner,
+                repo,
+                artifact_id: artifact.id,
+              });
+            }
+            core.info('Done.');

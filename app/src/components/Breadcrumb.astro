@@ -6,14 +6,14 @@ import { slugLabels } from '~/config/slugLabels'
 const entry = Astro.locals.starlightRoute.entry
 
 const collection = entry.collection
-const parts: any[] = (entry.slug as string)
-	? await (entry.slug as string).split('/').reduce<Promise<any[]>>(
+const parts: any[] = (entry.id as string)
+	? await (entry.id as string).split('/').reduce<Promise<any[]>>(
 		async (accPromise, part) => {
 			const acc = await accPromise
 			const partSlug = acc.length >= 1 ? `${acc[acc.length - 1].slug}/${part}` : part
 			const partEntry: any = await getEntry(collection, partSlug)
 			const partLabel = partEntry ? partEntry.data.title : (slugLabels[partSlug as keyof typeof slugLabels] ?? part)
-			const partLink = partEntry ? `/${partEntry.slug}/` : null
+			const partLink = partEntry ? `/${partEntry.id}/` : null
 			return [
 				...acc,
 				{

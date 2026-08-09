@@ -16,7 +16,7 @@
     "astro:preview": "astro preview",
     "test:vitest": "vitest run",
     "test:playwright": "playwright test",
-    "deps:update": "pnpx npm-check-updates -t semver -u && pnpm i"
+    "npm:lockfile": "npm install --package-lock-only --ignore-scripts"
   },
   "repository": {
     "type": "git",
@@ -27,27 +27,31 @@
   },
   "homepage": "https://github.com/matiboux/matiboux-guides#readme",
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/starlight": "^0.35.3",
-    "@astrojs/starlight-tailwind": "^4.0.1",
-    "@astrojs/svelte": "^7.2.0",
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/starlight": "^0.40.0",
+    "@astrojs/starlight-tailwind": "^5.0.0",
+    "@astrojs/svelte": "^7.2.5",
     "@iconify-json/eos-icons": "^1.2.4",
     "@iconify-json/mdi": "^1.2.3",
-    "@iconify-json/twemoji": "^1.2.4",
+    "@iconify-json/twemoji": "^1.2.5",
     "@iconify-json/uil": "^1.2.3",
-    "@iconify/tailwind4": "^1.0.6",
+    "@iconify/tailwind4": "^1.2.3",
     "@nanostores/persistent": "^0.10.2",
-    "@tailwindcss/vite": "^4.1.14",
-    "astro": "^6.1.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^6.4.8",
     "nanostores": "^0.11.4",
-    "sass": "^1.93.2",
-    "svelte": "^5.55.7",
-    "tailwindcss": "^4.1.14",
-    "typescript": "^5.9.3"
+    "sass": "^1.102.0",
+    "svelte": "^5.56.8",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.0",
-    "@types/node": "^22.18.10",
-    "vitest": "^3.2.4"
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^24.13.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  },
+  "imports": {
+    "#global.css": "./src/styles/global.css",
+    "#tailwind.css": "./src/styles/tailwind.css"
   }
 }

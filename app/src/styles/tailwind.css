@@ -14,10 +14,6 @@
 
 /* Custom theme configuration */
 @theme {
-	/* Custom theme variables */
-	/* Set your custom theme variables below.
-	   See the documentation for more information: https://tailwindcss.com/docs/theme */
-
 	/* Custom Starlight theme colors.
 	   Generated 'Ocean' preset colors from:
 	   https://starlight.astro.build/guides/css-and-tailwind/#color-theme-editor */
@@ -37,11 +33,15 @@
 	--color-gray-800: #182a2f;
 	--color-gray-900: #121a1c;
 
-	/* Custom theme variables.
-	   See the documentation for more information:
-	   https://tailwindcss.com/docs/theme */
+	/* Custom theme variables */
+	/* Set your custom theme variables below.
+	   See the documentation for more information: https://tailwindcss.com/docs/theme */
 
 	/* Breakpoints (screens). */
 	--breakpoint-md: 50rem;
 	--breakpoint-lg: 72rem;
 }
+
+/* Tailwind CSS safe list */
+/* You may optionally declare a safelist of classes to always include in the final CSS output. */
+/* Syntax example: `@source inline("{sm:,md,lg:,xl:,}bg-red-{100..900..50}");` */
